@@ -14,11 +14,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <title>COMEBACK ENGLISH | 1,2,3...Let's Go</title>
     <meta name="description"
         content="I've helped over 5,000 students speak with confidence and achieve their desired IELTS score. Let's reach your language goals together.">
-
     <link rel="icon"
         href="https://res.cloudinary.com/dmskxohrr/image/upload/f_auto/v1769865345/yj7dliyyblx77qkipwjs.png"
         type="image/png">
-
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,13 +33,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ]
 }
 </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@300;500;700&display=swap"
         rel="stylesheet">
-
     <style>
         :root {
             /* Core Brand Palette - Black & Pink */
@@ -49,14 +45,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             --brand-dark-pink: #c2006a;
             --brand-black: #050507;
             --brand-gray: #1a1a1a;
-
             /* Social Colors */
             --social-wa: #25D366;
             --social-fb: #1877F2;
             --social-yt: #FF0000;
             --social-ig: #E1306C;
             --social-tk: #00f2ea;
-
             /* Modern UI Tokens */
             --bg-deep: var(--brand-black);
             --glass-surface: rgba(255, 255, 255, 0.03);
@@ -65,7 +59,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.7);
             --text-tertiary: rgba(255, 255, 255, 0.45);
-
             /* Physics & Spacing */
             --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -73,7 +66,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             --radius-lg: 24px;
             --radius-md: 16px;
             --radius-sm: 12px;
-
             --font-body: 'Plus Jakarta Sans', sans-serif;
             --font-display: 'Space Grotesk', sans-serif;
         }
@@ -193,6 +185,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             text-shadow: 0 0 30px rgba(230, 0, 126, 0.4);
         }
 
+        .brand-motto {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            text-align: center;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fade-up 0.8s var(--ease-smooth) 0.1s forwards;
+        }
+
         /* --- Main Layout --- */
         .main-container {
             display: flex;
@@ -217,12 +223,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             display: flex;
             flex-direction: column;
             height: auto;
+
+            /* Performance & Glitch Fixes for Scroll/Blur */
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            isolation: isolate;
+            will-change: transform, box-shadow;
         }
 
         .glass-card:hover {
             border-color: var(--glass-highlight);
             box-shadow: 0 20px 40px -4px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(230, 0, 126, 0.2);
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
         }
 
         /* --- Animation Utilities --- */
@@ -310,14 +324,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .profile-content h1 {
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin: 1.5rem 0 1rem;
-            background: linear-gradient(90deg, #fff, #f0b4d4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            line-height: 1.1;
+            line-height: 1.2;
+        }
+
+        .h1-think {
+            color: #ef0097;
+        }
+
+        .h1-speak {
+            color: #110842;
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+        }
+
+        /* Added stroke to black background to make it visible */
+        .h1-dream {
+            color: #ff8e00;
         }
 
         .quote-box {
@@ -346,10 +369,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .quote-text {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             line-height: 1.6;
-            color: var(--text-secondary);
+            color: #ffffff;
+            /* Stark white requested */
             font-style: italic;
+            font-family: var(--font-display);
+            font-weight: 500;
         }
 
         .yt-highlight {
@@ -373,6 +399,161 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--text-primary);
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* --- Upcoming Batches --- */
+        .upcoming-batches {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .upcoming-batches h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .upcoming-batches h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--brand-pink);
+            border-radius: 2px;
+        }
+
+        .batches-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 600px) {
+            .batches-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .batches-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .batch-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            transition: all 0.3s var(--ease-spring);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .batch-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--brand-pink);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .batch-item:hover {
+            background: rgba(230, 0, 126, 0.05);
+            border-color: rgba(230, 0, 126, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .batch-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .batch-icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto;
+            background: rgba(230, 0, 126, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-pink);
+        }
+
+        .batch-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .batch-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .batch-date {
+            font-size: 0.95rem;
+            color: #ff8e00;
+            font-weight: 600;
+            background: rgba(255, 142, 0, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 100px;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        /* --- Premium White Section --- */
+        .premium-white-section {
+            background-color: #ffffff;
+            border-radius: var(--radius-xl);
+            padding: 3rem 1.5rem;
+            margin-top: 0.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .premium-white-section .premium-title {
+            color: var(--brand-black);
+        }
+
+        .premium-white-section .scroll-indicator {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .premium-white-section .courses-panel::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .premium-white-section .journey-cta-container {
+            margin-bottom: 0;
+            margin-top: 1rem;
         }
 
         /* Scrollable Courses Panel */
@@ -528,6 +709,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-weight: 700;
         }
 
+        /* Journey CTA Button */
+        .journey-cta-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .journey-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 3rem;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            background: linear-gradient(135deg, #ff8e00, #ff6a00);
+            border-radius: 100px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(255, 142, 0, 0.4);
+            transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: ripple-pulse 2s infinite;
+        }
+
+        @keyframes ripple-pulse {
+            0% {
+                box-shadow: 0 10px 30px rgba(255, 142, 0, 0.4), 0 0 0 0 rgba(255, 142, 0, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 10px 30px rgba(255, 142, 0, 0.4), 0 0 0 20px rgba(255, 142, 0, 0);
+            }
+
+            100% {
+                box-shadow: 0 10px 30px rgba(255, 142, 0, 0.4), 0 0 0 0 rgba(255, 142, 0, 0);
+            }
+        }
+
+        .journey-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.5s ease;
+        }
+
+        .journey-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 142, 0, 0.6);
+        }
+
+        .journey-btn:hover::after {
+            left: 200%;
+        }
+
         /* Bottom Grid: Resources & Community */
         .bottom-grid {
             display: grid;
@@ -544,6 +789,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         /* Resources */
         .resources-card {
             padding: 2rem;
+        }
+
+        .resources-card:hover {
+            border-color: rgba(255, 142, 0, 0.4);
+            box-shadow: 0 20px 40px -4px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 142, 0, 0.2);
         }
 
         .card-header {
@@ -569,8 +819,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .resource-item {
-            background: rgba(230, 0, 126, 0.1);
-            border: 1px solid rgba(230, 0, 126, 0.1);
+            background: rgba(255, 142, 0, 0.1);
+            border: 1px solid rgba(255, 142, 0, 0.1);
             padding: 1.25rem;
             border-radius: var(--radius-md);
             display: flex;
@@ -584,9 +834,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .resource-item:hover {
-            background: var(--brand-pink);
+            background: #ff8e00;
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 142, 0, 0.3);
             border-color: transparent;
         }
 
@@ -750,9 +1000,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             box-shadow: 2px 2px 0 var(--social-tk), -2px -2px 0 #ff0050;
         }
 
-        .di-yt:hover {
+        .di-yt {
             background: var(--social-yt);
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .di-yt:hover {
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.6);
+            transform: translateY(-5px) scale(1.1);
         }
 
         /* Mobile Responsive */
@@ -808,22 +1063,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 
 <body>
-
     <div class="bg-mesh-container">
         <div class="mesh-blob blob-1"></div>
         <div class="mesh-blob blob-2"></div>
         <div class="mesh-blob blob-3"></div>
     </div>
     <div class="noise-overlay"></div>
-
     <header class="header-wrapper">
         <div class="brand-container">
             <span class="brand-text">COMEBACK</span>
         </div>
+        <div class="brand-motto">1,2,3...Let's go</div>
     </header>
-
     <main class="main-container">
-
         <!-- Hero Section -->
         <div class="glass-card profile-card anim-delay-1">
             <div class="profile-header">
@@ -833,93 +1085,153 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         alt="Mahi Ahmed Marjan" class="avatar-img">
                 </div>
                 <div class="profile-content">
-                    <h1>Let's Reach Your Goals</h1>
+                    <h1>
+                        <span class="h1-think">Think English</span>
+                        <span class="h1-speak">Speak English</span>
+                        <span class="h1-dream">Dream English</span>
+                    </h1>
                     <div class="quote-box">
                         <p class="quote-text">
-                            "I've helped over 5,000 students speak with confidence and achieve their desired IELTS
-                            score. Learn from <a href="https://www.youtube.com/@ComebackEnglish" target="_blank"
-                                rel="noopener noreferrer" class="yt-highlight">my lessons on YouTube</a>."
+                            "Real learning till the day I die"
                         </p>
                         <span class="quote-author">— Mahi Ahmed Marjan</span>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Scrollable Panel (Courses) -->
-        <h2 class="premium-title anim-delay-2">Premium Courses</h2>
-        <div class="scroll-indicator anim-delay-2">
-            <span>Scroll</span>
-            <svg viewBox="0 0 24 24">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-        </div>
-        <div class="courses-panel anim-delay-2">
-            <div class="course-card pink">
-                <h3>SPOKEN & BASICS</h3>
-                <ul class="course-features">
-                    <li>30 class</li>
-                    <li>Speakers' club</li>
-                    <li>2.5 month</li>
-                    <li>24/7 support</li>
-                </ul>
-                <div class="course-price-wrap">
-                    <span class="price-old">৳4000</span>
-                    <span class="price-new">৳0.00</span>
-                </div>
-            </div>
-
-            <div class="course-card pink">
-                <h3>COMPLETE IELTS</h3>
-                <ul class="course-features">
-                    <li>36 class</li>
-                    <li>Speakers' club</li>
-                    <li>3 month</li>
-                    <li>24/7 support</li>
-                </ul>
-                <div class="course-price-wrap">
-                    <span class="price-old">৳7,500</span>
-                    <span class="price-new">৳4500</span>
-                </div>
-            </div>
-
-            <div class="course-card black">
-                <h3>WRITING for IELTS</h3>
-                <ul class="course-features">
-                    <li>18 workshop</li>
-                    <li>Speakers' club</li>
-                    <li>Writing checking</li>
-                    <li>1.5 month</li>
-                    <li>24/7 support</li>
-                </ul>
-                <div class="course-price-wrap">
-                    <span class="price-old">৳3000</span>
-                    <span class="price-new">৳1800</span>
-                </div>
-            </div>
-
-            <div class="course-card black">
-                <h3>READING for IELTS</h3>
-                <ul class="course-features">
-                    <li>18 session</li>
-                    <li>Speakers' club</li>
-                    <li>1.5 month</li>
-                    <li>24/7 support</li>
-                </ul>
-                <div class="course-price-wrap">
-                    <span class="price-old">৳3000</span>
-                    <span class="price-new">৳1800</span>
+            <!-- Upcoming Batches Section within Hero -->
+            <div class="upcoming-batches">
+                <h3>Upcoming Batches</h3>
+                <div class="batches-grid">
+                    <div class="batch-item">
+                        <div class="batch-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <span class="batch-name">IELTS</span>
+                        <span class="batch-date">28 March 2026</span>
+                    </div>
+                    <div class="batch-item">
+                        <div class="batch-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <span class="batch-name">Spoken English</span>
+                        <span class="batch-date">29 March 2026</span>
+                    </div>
+                    <div class="batch-item">
+                        <div class="batch-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <span class="batch-name">Reading for IELTS</span>
+                        <span class="batch-date">29 March 2026</span>
+                    </div>
+                    <div class="batch-item">
+                        <div class="batch-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <span class="batch-name">Writing for IELTS</span>
+                        <span class="batch-date">04 April 2026</span>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <section class="premium-white-section">
+            <!-- Scrollable Panel (Courses) -->
+            <h2 class="premium-title anim-delay-2">Premium Courses</h2>
+            <div class="scroll-indicator anim-delay-2">
+                <span>Scroll</span>
+                <svg viewBox="0 0 24 24">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+            <div class="courses-panel anim-delay-2">
+                <div class="course-card pink">
+                    <h3>SPOKEN & BASICS</h3>
+                    <ul class="course-features">
+                        <li>30 class</li>
+                        <li>Speakers' club</li>
+                        <li>2.5 month</li>
+                        <li>24/7 support</li>
+                    </ul>
+                    <div class="course-price-wrap">
+                        <span class="price-old">৳4000</span>
+                        <span class="price-new">৳0.00</span>
+                    </div>
+                </div>
+                <div class="course-card pink">
+                    <h3>COMPLETE IELTS</h3>
+                    <ul class="course-features">
+                        <li>36 class</li>
+                        <li>Speakers' club</li>
+                        <li>3 month</li>
+                        <li>24/7 support</li>
+                    </ul>
+                    <div class="course-price-wrap">
+                        <span class="price-old">৳7,500</span>
+                        <span class="price-new">৳4500</span>
+                    </div>
+                </div>
+                <div class="course-card black">
+                    <h3>WRITING for IELTS</h3>
+                    <ul class="course-features">
+                        <li>18 workshop</li>
+                        <li>Speakers' club</li>
+                        <li>Writing checking</li>
+                        <li>1.5 month</li>
+                        <li>24/7 support</li>
+                    </ul>
+                    <div class="course-price-wrap">
+                        <span class="price-old">৳3000</span>
+                        <span class="price-new">৳1800</span>
+                    </div>
+                </div>
+                <div class="course-card black">
+                    <h3>READING for IELTS</h3>
+                    <ul class="course-features">
+                        <li>18 session</li>
+                        <li>Speakers' club</li>
+                        <li>1.5 month</li>
+                        <li>24/7 support</li>
+                    </ul>
+                    <div class="course-price-wrap">
+                        <span class="price-old">৳3000</span>
+                        <span class="price-new">৳1800</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Call to Action Button -->
+            <div class="journey-cta-container anim-delay-3">
+                <a href="https://wa.me/+8801804943257" target="_blank" rel="noopener noreferrer"
+                    class="journey-btn">Start COMEBACK Journey</a>
+            </div>
+        </section>
         <!-- Bottom Sections -->
         <div class="bottom-grid">
             <!-- Resources -->
             <section class="glass-card resources-card anim-delay-3">
                 <div class="card-header">
-                    <div class="card-title">Download Important PDFs</div>
+                    <div class="card-title">Download PDFs</div>
                 </div>
                 <div class="grid-menu">
                     <a href="https://drive.google.com/drive/folders/1SK3hCqkA9lGxuEgdAfc9bZurw5tc8jhG?usp=sharing"
@@ -948,31 +1260,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </a>
                 </div>
             </section>
-
             <!-- Community -->
             <section class="glass-card community-card anim-delay-4">
-                <span class="section-label">Community Groups</span>
                 <div class="join-grid">
                     <a href="https://www.facebook.com/share/g/1HKtCj4j95/" class="social-btn-lg btn-fb" target="_blank"
                         rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.15 5.96C15.21 5.96 16.12 6.04 16.12 6.04V8.51H15.01C13.77 8.51 13.38 9.28 13.38 10.07V12.06H16.16L15.72 14.96H13.38V21.96C18.16 21.21 21.82 17.06 21.82 12.06C21.82 6.53 17.32 2.04 12 2.04Z" />
-                        </svg>
-                        Facebook
+                        Facebook Group
                     </a>
                     <a href="https://chat.whatsapp.com/ICkfdopDsiGIxNUvu4KN16?mode=gi_t" class="social-btn-lg btn-wa"
                         target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.005.572 1.973.871 2.806.871 3.181 0 5.767-2.587 5.768-5.766.001-3.18-2.585-5.766-5.768-5.766zm.92 8.865c-.035.002-.08.002-.123-.002-2.302-.198-4.148-1.571-4.148-3.097 0-1.258 1.259-2.278 2.812-2.278 1.554 0 2.813 1.02 2.813 2.279 0 1.217-.991 2.213-2.308 2.309-1.242.09-2.528 1.488-2.528 1.488.163-.923 1.705-.623 3.482-.699z" />
-                        </svg>
-                        WhatsApp
+                        WhatsApp Community
                     </a>
                 </div>
-
                 <hr class="separator">
-
                 <div class="social-dock">
                     <a href="https://www.facebook.com/comebackenglish" class="dock-item di-fb" target="_blank"
                         rel="noopener noreferrer" aria-label="Facebook">
