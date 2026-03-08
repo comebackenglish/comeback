@@ -1114,6 +1114,15 @@
                 width: 100%;
                 justify-content: space-between;
             }
+
+            /* Smoother mobile reveals */
+            .reveal {
+                transform: translateY(15px) scale(0.98);
+            }
+
+            .reveal[class*="delay-"] {
+                transition-delay: 0s;
+            }
         }
     </style>
 </head>
@@ -1428,9 +1437,11 @@
             // 1. Scroll Reveals (Intersection Observer)
             const revealElements = document.querySelectorAll('.reveal');
 
+            // Dynamically adjust rootMargin based on screen size for better mobile triggering
+            const isMobile = window.innerWidth <= 600;
             const revealOptions = {
                 threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
+                rootMargin: isMobile ? "0px 0px 0px 0px" : "0px 0px -50px 0px"
             };
 
             const revealObserver = new IntersectionObserver((entries, observer) => {
