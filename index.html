@@ -86,8 +86,20 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            outline: none;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--brand-pink);
+            outline-offset: 4px;
+            border-radius: 4px;
+            transition: outline-offset 0.2s ease;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        .course-card:focus-visible {
+            outline-offset: 8px;
         }
 
         body {
@@ -158,8 +170,13 @@
         }
 
         .noise-overlay {
-            display: none;
-            /* Disabled for scroll performance */
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            mix-blend-mode: overlay;
         }
 
         /* --- Header --- */
@@ -181,7 +198,7 @@
 
         .brand-text {
             font-family: var(--font-display);
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
             letter-spacing: -0.04em;
             color: var(--brand-pink);
@@ -259,24 +276,29 @@
             }
         }
 
-        .anim-delay-1 {
-            animation: fade-up 0.8s var(--ease-smooth) 0.1s forwards;
+        .reveal {
             opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
 
-        .anim-delay-2 {
-            animation: fade-up 0.8s var(--ease-smooth) 0.2s forwards;
-            opacity: 0;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
-        .anim-delay-3 {
-            animation: fade-up 0.8s var(--ease-smooth) 0.3s forwards;
-            opacity: 0;
+        /* Adjust delays if sequentially loaded items exist together */
+        .reveal.delay-1 {
+            transition-delay: 0.1s;
         }
 
-        .anim-delay-4 {
-            animation: fade-up 0.8s var(--ease-smooth) 0.4s forwards;
-            opacity: 0;
+        .reveal.delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal.delay-3 {
+            transition-delay: 0.3s;
         }
 
         /* --- Hero: Profile --- */
@@ -319,7 +341,7 @@
 
         .profile-content h1 {
             font-family: var(--font-educator);
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
             font-weight: 700;
             margin: 1.5rem 0 1rem;
             line-height: 1.1;
@@ -649,7 +671,7 @@
 
         .course-card h3 {
             font-family: var(--font-display);
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
             text-transform: uppercase;
             margin-bottom: 1.5rem;
             line-height: 1.2;
@@ -695,8 +717,47 @@
 
         .price-new {
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem);
             font-weight: 700;
+        }
+
+        .course-dl-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 0.8rem 1.2rem;
+            background: #fff;
+            color: var(--brand-pink);
+            border-radius: 100px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s var(--ease-spring);
+        }
+
+        .course-dl-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: var(--brand-dark-pink);
+        }
+
+        .course-card.black .course-dl-btn {
+            color: #110842;
+        }
+
+        /* Draggable cursor classes for horizontal panel */
+        .courses-panel.is-dragging {
+            cursor: grabbing !important;
+            user-select: none;
+            scroll-snap-type: none;
+            /* Disable snapping while dragging for smoothness */
+        }
+
+        .courses-panel {
+            cursor: grab;
         }
 
         /* Journey CTA Button */
@@ -809,8 +870,8 @@
         }
 
         .resource-item {
-            background: rgba(255, 142, 0, 0.1);
-            border: 1px solid rgba(255, 142, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 1);
             padding: 1.25rem;
             border-radius: var(--radius-md);
             display: flex;
@@ -821,32 +882,41 @@
             transition: all 0.3s var(--ease-smooth);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .resource-item:hover {
-            background: #ff8e00;
+            background: var(--brand-pink);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 142, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.3);
             border-color: transparent;
+        }
+
+        .resource-item:hover .res-label {
+            color: #fff;
         }
 
         .res-icon {
             width: 32px;
             height: 32px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, filter 0.3s;
+            /* Filter for var(--brand-pink) #e6007e on white background */
+            filter: brightness(0) saturate(100%) invert(21%) sepia(85%) saturate(4649%) hue-rotate(317deg) brightness(97%) contrast(100%);
         }
 
         .resource-item:hover .res-icon {
             transform: scale(1.1) rotate(-5deg);
+            /* Reset filter to white on hover */
             filter: brightness(0) invert(1);
         }
 
         .res-label {
             font-family: var(--font-display);
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.1rem;
-            color: #fff;
+            color: var(--brand-pink);
             line-height: 1.2;
+            transition: color 0.3s;
         }
 
         /* Community Section */
@@ -1019,10 +1089,6 @@
                 height: 160px;
             }
 
-            .profile-content h1 {
-                font-size: 2rem;
-            }
-
             .resources-card,
             .community-card {
                 padding: 1.5rem;
@@ -1067,12 +1133,12 @@
     </header>
     <main class="main-container">
         <!-- Hero Section -->
-        <div class="glass-card profile-card anim-delay-1">
+        <div class="glass-card profile-card reveal">
             <div class="profile-header">
                 <div class="avatar-wrapper">
                     <div class="avatar-ring"></div>
                     <img src="https://res.cloudinary.com/dmskxohrr/image/upload/f_auto/v1769918372/c30ddn490qurtiwwig1t.jpg"
-                        alt="Mahi Ahmed Marjan" class="avatar-img">
+                        alt="Mahi Ahmed Marjan" class="avatar-img" width="200" height="200">
                 </div>
                 <div class="profile-content">
                     <h1>
@@ -1084,7 +1150,13 @@
                         <p class="quote-text">
                             "Real learning till the day I die"
                         </p>
-                        <span class="quote-author">— Mahi Ahmed Marjan</span>
+                        <span class="quote-author">Mahi Ahmed</span>
+                        <span class="quote-author"
+                            style="margin-top: 0.25rem; font-size: 0.8rem; text-transform: none; font-weight: 500; color: var(--text-secondary);">7+
+                            Years' Experience</span>
+                        <span class="quote-author"
+                            style="margin-top: 0.25rem; font-size: 0.8rem; text-transform: none; font-weight: 500; color: var(--text-secondary);">IELTS
+                            8.0 in 2022</span>
                     </div>
                 </div>
             </div>
@@ -1198,14 +1270,14 @@
 
         <section class="premium-white-section">
             <!-- Scrollable Panel (Courses) -->
-            <div class="scroll-indicator anim-delay-2">
+            <div class="scroll-indicator reveal">
                 <span>SCROLL</span>
                 <svg viewBox="0 0 24 24">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
             </div>
-            <div class="courses-panel anim-delay-2">
+            <div class="courses-panel reveal delay-1">
                 <div class="course-card pink">
                     <h3>SPOKEN & BASICS</h3>
                     <ul class="course-features">
@@ -1214,6 +1286,10 @@
                         <li>2.5 month</li>
                         <li>24/7 support</li>
                     </ul>
+                    <a href="https://docs.google.com/document/d/1QelpDb4PsWDt7-79iXwiT9aUlc1mNDleKrlm6bgtPWg/edit?usp=sharing"
+                        target="_blank" rel="noopener noreferrer" class="course-dl-btn">
+                        Download Course Content
+                    </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳4000</span>
                         <span class="price-new">৳0.00</span>
@@ -1261,7 +1337,7 @@
                 </div>
             </div>
             <!-- Call to Action Button -->
-            <div class="journey-cta-container anim-delay-3">
+            <div class="journey-cta-container reveal delay-2">
                 <a href="https://wa.me/+8801804943257" target="_blank" rel="noopener noreferrer"
                     class="journey-btn">Start Learning</a>
             </div>
@@ -1269,7 +1345,7 @@
         <!-- Bottom Sections -->
         <div class="bottom-grid">
             <!-- Resources -->
-            <section class="glass-card resources-card anim-delay-3">
+            <section class="glass-card resources-card reveal">
                 <div class="card-header">
                     <div class="card-title">Download PDFs</div>
                 </div>
@@ -1301,7 +1377,7 @@
                 </div>
             </section>
             <!-- Community -->
-            <section class="glass-card community-card anim-delay-4">
+            <section class="glass-card community-card reveal delay-1">
                 <div class="join-grid">
                     <a href="https://www.facebook.com/share/g/1HKtCj4j95/" class="social-btn-lg btn-fb" target="_blank"
                         rel="noopener noreferrer">
@@ -1345,6 +1421,63 @@
             </section>
         </div>
     </main>
+
+    <!-- Modern Interactions Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Scroll Reveals (Intersection Observer)
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 2. Horizontal Drag to Scroll for Courses Panel
+            const slider = document.querySelector('.courses-panel');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            if (slider) {
+                slider.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    slider.classList.add('is-dragging');
+                    startX = e.pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                });
+
+                slider.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    slider.classList.remove('is-dragging');
+                });
+
+                slider.addEventListener('mouseup', () => {
+                    isDown = false;
+                    slider.classList.remove('is-dragging');
+                });
+
+                slider.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - slider.offsetLeft;
+                    const walk = (x - startX) * 2; // Scroll speed multiplier
+                    slider.scrollLeft = scrollLeft - walk;
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
