@@ -374,11 +374,15 @@
             -webkit-backdrop-filter: blur(10px);
         }
 
-        .quote-box::before {
+        .quote-text {
+            position: relative;
+        }
+
+        .quote-text::before {
             content: '"';
             position: absolute;
             top: -15px;
-            left: 20px;
+            left: -20px;
             font-family: serif;
             font-size: 4rem;
             color: var(--brand-pink);
@@ -1092,16 +1096,16 @@
                         <span class="h1-dream">Dream English</span>
                     </h1>
                     <div class="quote-box">
-                        <p class="quote-text">
-                            "Real learning till the day I die"
-                        </p>
                         <span class="quote-author">Mahi Ahmed</span>
-                        <span class="quote-author"
-                            style="margin-top: 0.25rem; font-size: 0.8rem; text-transform: none; font-weight: 500; color: var(--text-secondary);">7+
-                            Years' Experience</span>
                         <span class="quote-author"
                             style="margin-top: 0.25rem; font-size: 0.8rem; text-transform: none; font-weight: 500; color: var(--text-secondary);">IELTS
                             8.0 in 2022</span>
+                        <span class="quote-author"
+                            style="margin-top: 0.25rem; font-size: 0.8rem; text-transform: none; font-weight: 500; color: var(--text-secondary);">7+
+                            Years' Experience</span>
+                        <p class="quote-text" style="margin-top: 1rem;">
+                            "Real learning till the day I die"
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1233,7 +1237,10 @@
                     </div>
                 </div>
                 <div class="course-card pink">
-                    <h3>COMPLETE IELTS</h3>
+                    <h3 style="margin-bottom: 0.5rem;">COMPLETE IELTS</h3>
+                    <p style="font-weight: bold; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.95;">
+                        Speaking + Listening + Reading + Writing
+                    </p>
                     <ul class="course-features">
                         <li>36 class</li>
                         <li>Speakers' club</li>
