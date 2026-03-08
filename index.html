@@ -577,85 +577,37 @@
             margin-top: 1rem;
         }
 
-        /* Scrollable Courses Panel */
-        .scroll-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            color: var(--brand-black);
-            font-size: 1.25rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            animation: pulse-horizontal 2s infinite ease-in-out;
-        }
 
-        .scroll-indicator svg {
-            width: 28px;
-            height: 28px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        @keyframes pulse-horizontal {
-
-            0%,
-            100% {
-                transform: translateX(0);
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: translateX(10px);
-                opacity: 1;
-                color: var(--brand-pink);
-            }
-        }
 
         .courses-panel {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 1.5rem;
-            overflow-x: auto;
-            padding-bottom: 1rem;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: var(--brand-pink) var(--glass-surface);
             width: 100%;
-            -webkit-overflow-scrolling: touch;
+            padding-bottom: 1rem;
         }
 
-        .courses-panel::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .courses-panel::-webkit-scrollbar-track {
-            background: var(--glass-surface);
-            border-radius: 10px;
-        }
-
-        .courses-panel::-webkit-scrollbar-thumb {
-            background: var(--brand-pink);
-            border-radius: 10px;
+        @media (min-width: 768px) {
+            .courses-panel {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .course-card {
-            min-width: 300px;
-            flex: 0 0 auto;
             border-radius: var(--radius-lg);
             padding: 2rem;
             display: flex;
             flex-direction: column;
-            scroll-snap-align: center;
-            scroll-snap-stop: always;
             position: relative;
             overflow: hidden;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
+            transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .course-card.pink {
@@ -746,18 +698,6 @@
 
         .course-card.black .course-dl-btn {
             color: #110842;
-        }
-
-        /* Draggable cursor classes for horizontal panel */
-        .courses-panel.is-dragging {
-            cursor: grabbing !important;
-            user-select: none;
-            scroll-snap-type: none;
-            /* Disable snapping while dragging for smoothness */
-        }
-
-        .courses-panel {
-            cursor: grab;
         }
 
         /* Journey CTA Button */
@@ -1278,14 +1218,6 @@
         </div>
 
         <section class="premium-white-section">
-            <!-- Scrollable Panel (Courses) -->
-            <div class="scroll-indicator reveal">
-                <span>SCROLL</span>
-                <svg viewBox="0 0 24 24">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-            </div>
             <div class="courses-panel reveal delay-1">
                 <div class="course-card pink">
                     <h3>SPOKEN & BASICS</h3>
@@ -1454,39 +1386,6 @@
             }, revealOptions);
 
             revealElements.forEach(el => revealObserver.observe(el));
-
-            // 2. Horizontal Drag to Scroll for Courses Panel
-            const slider = document.querySelector('.courses-panel');
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            if (slider) {
-                slider.addEventListener('mousedown', (e) => {
-                    isDown = true;
-                    slider.classList.add('is-dragging');
-                    startX = e.pageX - slider.offsetLeft;
-                    scrollLeft = slider.scrollLeft;
-                });
-
-                slider.addEventListener('mouseleave', () => {
-                    isDown = false;
-                    slider.classList.remove('is-dragging');
-                });
-
-                slider.addEventListener('mouseup', () => {
-                    isDown = false;
-                    slider.classList.remove('is-dragging');
-                });
-
-                slider.addEventListener('mousemove', (e) => {
-                    if (!isDown) return;
-                    e.preventDefault();
-                    const x = e.pageX - slider.offsetLeft;
-                    const walk = (x - startX) * 2; // Scroll speed multiplier
-                    slider.scrollLeft = scrollLeft - walk;
-                });
-            }
         });
     </script>
 </body>
