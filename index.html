@@ -134,7 +134,6 @@
         .mesh-blob {
             position: absolute;
             opacity: 0.3;
-            will-change: transform;
             animation: float-ambient 20s infinite alternate ease-in-out;
         }
 
@@ -285,7 +284,6 @@
             opacity: 0;
             transform: translateY(30px) scale(0.98);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
         }
 
         .reveal.active {
@@ -617,7 +615,6 @@
             width: max-content;
             animation: scroll-ticker 20s linear infinite;
             padding: 0.5rem 1rem;
-            will-change: transform;
         }
 
         .batches-grid:hover {
@@ -1765,7 +1762,8 @@
             }
         });
     </script>
-    <!-- Data Burst Animation Script (Firework Style) -->
+
+    <!-- Data Burst Animation Script -->
     <script type="module">
         (function() {
             const canvas = document.getElementById('dataBurstCanvas');
@@ -1773,6 +1771,7 @@
 
             const ctx = canvas.getContext('2d');
             const section = document.getElementById('data-burst-section');
+            const originNode = document.getElementById('burst-origin-node');
             
             const colors = [
                 '#008060', '#00749C', '#2563EB', '#4285F4', '#0EA5E9', 
@@ -1781,60 +1780,88 @@
             ];
 
             let particles = [];
+            const numParticles = 150; 
+            let originX, originY;
             let width, height;
 
-            // Optional: limit total fireworks shown at once
-            const MAX_FIREWORKS = 3;
-            let currentFireworks = [];
-
-            const resize = () => {
-                width = canvas.width = section.offsetWidth;
-                height = canvas.height = section.offsetHeight;
+            const updateOrigin = () => {
+                if (originNode && section) {
+                    const iconRect = originNode.getBoundingClientRect();
+                    const sectionRect = section.getBoundingClientRect();
+                    
+                    originX = (iconRect.left + iconRect.width / 2) - sectionRect.left;
+                    originY = (iconRect.top + iconRect.height / 2) - sectionRect.top;
+                } else {
+                    originX = width / 2;
+                    originY = height / 2;
+                }
             };
 
-            class FireworkParticle {
-                constructor(x, y) {
-                    this.originX = x;
-                    this.originY = y;
+            const resizeCanvasSync = () => {
+                width = canvas.width = section.offsetWidth;
+                height = canvas.height = section.offsetHeight;
+                updateOrigin(); 
+            };
+
+            let resizeTimeout;
+            const resize = () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    resizeCanvasSync();
+                }, 100);
+            };
+
+            class Particle {
+                constructor() {
+                    this.firstRun = true;
+                    this.init();
+                }
+
+                init() {
                     this.angle = Math.random() * Math.PI * 2;
-                    // Vary speed for more natural explosion
-                    this.speed = Math.random() * 2 + 1; 
-                    this.size = Math.random() * 3 + 1; 
+                    this.speed = 0.2 + Math.random() * 0.4; 
+                    this.size = 2 + Math.random() * 3; 
                     this.color = colors[Math.floor(Math.random() * colors.length)];
-                    this.radius = 0;
                     
-                    // max distance before particle fades completely
-                    this.maxDist = Math.random() * 60 + 40; 
-                    // optional gravity effect, but let's keep it straight like data lines first
-                    this.gravity = 0;
+                    const maxDistX = Math.max(originX, width - originX);
+                    const maxDistY = Math.max(originY, height - originY);
+                    this.maxDist = Math.sqrt(maxDistX * maxDistX + maxDistY * maxDistY);
+                    
+                    if (this.firstRun) {
+                        this.radius = Math.random() * -this.maxDist; 
+                        this.firstRun = false;
+                    } else {
+                        this.radius = 0;
+                    }
                 }
 
                 update() {
                     this.radius += this.speed;
-                    // ease out speed so they slow down as they expand
-                    this.speed *= 0.96; 
-                    return this.radius < this.maxDist; // return true if still alive
+
+                    const maxDistX = Math.max(originX, width - originX);
+                    const maxDistY = Math.max(originY, height - originY);
+                    this.maxDist = Math.sqrt(maxDistX * maxDistX + maxDistY * maxDistY);
+
+                    if (this.radius > this.maxDist) {
+                        this.init();
+                    }
                 }
 
                 draw() {
                     if (this.radius < 0) return; 
 
-                    const x = this.originX + Math.cos(this.angle) * this.radius;
-                    // Add slight gravity specifically to the Y coordinate (optional)
-                    const y = this.originY + Math.sin(this.angle) * this.radius + (this.radius * 0.1); 
+                    const x = originX + Math.cos(this.angle) * this.radius;
+                    const y = originY + Math.sin(this.angle) * this.radius;
 
-                    // Fade out based on distance vs maxDist
                     const alpha = Math.max(0, 1 - (this.radius / this.maxDist));
                     
-                    // Draw trail
                     ctx.beginPath();
-                    ctx.moveTo(this.originX, this.originY);
+                    ctx.moveTo(originX, originY);
                     ctx.lineTo(x, y);
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.15})`; 
-                    ctx.lineWidth = 0.5;
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.08})`; 
+                    ctx.lineWidth = 1;
                     ctx.stroke();
 
-                    // Draw head (the data square)
                     ctx.fillStyle = this.color;
                     ctx.globalAlpha = alpha; 
                     ctx.fillRect(x - this.size / 2, y - this.size / 2, this.size, this.size);
@@ -1842,61 +1869,44 @@
                 }
             }
 
-            class Firework {
-                constructor() {
-                    this.x = Math.random() * (width - 40) + 20; // Keep within padded bounds
-                    this.y = Math.random() * (height - 40) + 20;
-                    this.particles = [];
-                    // Generate between 30 and 70 particles per firework
-                    const count = Math.floor(Math.random() * 40) + 30;
-                    for (let i = 0; i < count; i++) {
-                        this.particles.push(new FireworkParticle(this.x, this.y));
-                    }
+            const initParticles = () => {
+                particles = [];
+                for (let i = 0; i < numParticles; i++) {
+                    particles.push(new Particle());
                 }
+            };
 
-                update() {
-                    // Update all particles and filter out dead ones
-                    this.particles = this.particles.filter(p => p.update());
-                    return this.particles.length > 0; // The firework is "dead" when no particles are left
+            let lastTime = 0;
+            const animate = (timestamp) => {
+                if (!timestamp) timestamp = 0;
+                if (timestamp - lastTime < 16) {
+                    requestAnimationFrame(animate);
+                    return;
                 }
+                lastTime = timestamp;
 
-                draw() {
-                    this.particles.forEach(p => p.draw());
-                }
-            }
+                ctx.clearRect(0, 0, width, height);
+                updateOrigin();
 
-            const animate = () => {
-                // Dim the background slightly each frame to create trails/fade effect
-                // Using destination-out works well for transparent canvases
-                ctx.globalCompositeOperation = 'destination-out';
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.15)'; 
-                ctx.fillRect(0, 0, width, height);
-                ctx.globalCompositeOperation = 'source-over';
-
-                // Randomly spawn a new firework occasionally
-                if (currentFireworks.length < MAX_FIREWORKS && Math.random() < 0.03) {
-                    currentFireworks.push(new Firework());
-                }
-
-                // Update and draw existing fireworks
-                currentFireworks = currentFireworks.filter(fw => {
-                    fw.draw();
-                    return fw.update();
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
                 });
 
                 requestAnimationFrame(animate);
             };
 
-            // Initialize
-            requestAnimationFrame(() => {
-                resize();
-                animate();
+            requestAnimationFrame((t) => {
+                resizeCanvasSync();
+                initParticles();
+                animate(t);
             });
 
             window.addEventListener('resize', () => {
                 resize();
             });
-            window.addEventListener('load', resize);
+            
+            window.addEventListener('load', resizeCanvasSync);
         })();
     </script>
 </body>
