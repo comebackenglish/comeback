@@ -764,6 +764,50 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
+        .course-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 100px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: badge-float 3s ease-in-out infinite;
+        }
+
+        .course-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .badge-value {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.1), 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .badge-popular {
+            background: linear-gradient(135deg, #FFD700 0%, #FF9500 100%);
+            color: #111;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes badge-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
         .course-title {
             font-family: var(--font-display);
             font-size: clamp(1.4rem, 4vw, 1.8rem);
@@ -1457,6 +1501,10 @@
         <section class="premium-white-section">
             <div class="courses-panel reveal delay-1">
                 <div class="course-card pink">
+                    <div class="course-badge badge-value">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"></path></svg>
+                        Best Value
+                    </div>
                     <h3 class="course-title">SPOKEN & BASICS</h3>
                     <p class="course-subtitle">
                         Overcome fear and hesitation. Speak with confidence and fluency
@@ -1476,6 +1524,10 @@
                     </div>
                 </div>
                 <div class="course-card pink">
+                    <div class="course-badge badge-popular">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        Most Popular
+                    </div>
                     <h3 class="course-title">COMPLETE IELTS</h3>
                     <p class="course-subtitle">
                         Get the proven strategies to hit your target band score on your very first try.
