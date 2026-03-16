@@ -115,7 +115,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem 1rem;
+            padding: 1rem;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
@@ -186,7 +186,7 @@
 
         /* --- Header --- */
         .header-wrapper {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             position: relative;
             z-index: 10;
             opacity: 0;
@@ -228,7 +228,7 @@
         .main-container {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
             width: 100%;
             max-width: 1024px;
             position: relative;
@@ -310,8 +310,8 @@
         .hero-bento {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
             width: 100%;
         }
 
@@ -358,7 +358,7 @@
 
         /* --- Hero: Profile (Bento Main) --- */
         .profile-card {
-            padding: 3rem 2.5rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             background: radial-gradient(circle at top right, rgba(230, 0, 126, 0.05), transparent 60%), var(--glass-surface);
             display: flex;
@@ -482,9 +482,25 @@
             border-bottom-style: solid;
         }
 
+        /* --- Data Burst Effect --- */
+        .data-burst-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #burst-origin-node {
+            position: relative;
+            z-index: 10;
+        }
+
         /* Bento Stats Card */
         .stats-card {
-            padding: 2rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -496,6 +512,8 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .stat-group+.stat-group {
@@ -550,7 +568,7 @@
         /* --- Upcoming Batches Ticker (Bento Batches) --- */
         .upcoming-batches {
             height: 100%;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background: linear-gradient(135deg, #ff8e00, #ff6a00);
             display: flex;
             flex-direction: column;
@@ -686,8 +704,8 @@
             background-color: #fbfbfd;
             border-radius: var(--radius-xl);
             border: 1px solid rgba(0, 0, 0, 0.04);
-            padding: 4rem 2rem;
-            margin-top: 1rem;
+            padding: 2.5rem 1.5rem;
+            margin-top: 0.5rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05), 0 4px 16px rgba(0, 0, 0, 0.02);
             transition: box-shadow 0.6s ease;
         }
@@ -727,7 +745,7 @@
 
         .course-card {
             border-radius: var(--radius-xl);
-            padding: 2.5rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -916,7 +934,7 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .journey-btn {
@@ -975,7 +993,7 @@
 
         /* Resources */
         .resources-card {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .resources-card:hover {
@@ -1057,7 +1075,7 @@
 
         /* Community Section */
         .community-card {
-            padding: 2rem;
+            padding: 1.5rem;
             position: relative;
         }
 
@@ -1216,8 +1234,20 @@
                 font-size: 2.2rem;
             }
 
+            .brand-motto {
+                margin-top: -0.5rem;
+            }
+
+            .course-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                align-self: flex-start;
+                margin-bottom: 1rem;
+            }
+
             .profile-card {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem 1rem;
             }
 
             .avatar-wrapper {
@@ -1227,7 +1257,7 @@
 
             .resources-card,
             .community-card {
-                padding: 1.5rem;
+                padding: 1.25rem;
             }
 
             .grid-menu {
@@ -1351,7 +1381,8 @@
             </div>
 
             <!-- Stats Card -->
-            <div class="bento-card bento-stats stats-card reveal delay-2 tilt-target">
+            <div class="bento-card bento-stats stats-card reveal delay-2 tilt-target" id="data-burst-section">
+                <canvas id="dataBurstCanvas" class="data-burst-canvas"></canvas>
                 <div class="stat-group">
                     <div class="stat-icon">
                         <svg viewBox="0 0 24 24">
@@ -1374,7 +1405,7 @@
                     </div>
                     <div class="stat-info">
                         <span class="stat-value">5,000+</span>
-                        <span class="stat-label">Students Taught</span>
+                        <span class="stat-label">6.0+ & Confident speakers</span>
                     </div>
                 </div>
                 <div class="stat-group">
@@ -1505,7 +1536,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"></path></svg>
                         Best Value
                     </div>
-                    <h3 class="course-title">SPOKEN & BASICS</h3>
+                    <h3 class="course-title">SPOKEN English</h3>
                     <p class="course-subtitle">
                         Overcome fear and hesitation. Speak with confidence and fluency
                     </p>
@@ -1733,6 +1764,140 @@
                 });
             }
         });
+    </script>
+    <!-- Data Burst Animation Script (Firework Style) -->
+    <script type="module">
+        (function() {
+            const canvas = document.getElementById('dataBurstCanvas');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const section = document.getElementById('data-burst-section');
+            
+            const colors = [
+                '#008060', '#00749C', '#2563EB', '#4285F4', '#0EA5E9', 
+                '#64748B', '#F59E0B', '#D97706', '#0F9D58', '#8B5CF6', 
+                '#FF4F00', '#FF4500', '#0668E1', '#F9AB00', '#E60023', '#0077B5'
+            ];
+
+            let particles = [];
+            let width, height;
+
+            // Optional: limit total fireworks shown at once
+            const MAX_FIREWORKS = 3;
+            let currentFireworks = [];
+
+            const resize = () => {
+                width = canvas.width = section.offsetWidth;
+                height = canvas.height = section.offsetHeight;
+            };
+
+            class FireworkParticle {
+                constructor(x, y) {
+                    this.originX = x;
+                    this.originY = y;
+                    this.angle = Math.random() * Math.PI * 2;
+                    // Vary speed for more natural explosion
+                    this.speed = Math.random() * 2 + 1; 
+                    this.size = Math.random() * 3 + 1; 
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.radius = 0;
+                    
+                    // max distance before particle fades completely
+                    this.maxDist = Math.random() * 60 + 40; 
+                    // optional gravity effect, but let's keep it straight like data lines first
+                    this.gravity = 0;
+                }
+
+                update() {
+                    this.radius += this.speed;
+                    // ease out speed so they slow down as they expand
+                    this.speed *= 0.96; 
+                    return this.radius < this.maxDist; // return true if still alive
+                }
+
+                draw() {
+                    if (this.radius < 0) return; 
+
+                    const x = this.originX + Math.cos(this.angle) * this.radius;
+                    // Add slight gravity specifically to the Y coordinate (optional)
+                    const y = this.originY + Math.sin(this.angle) * this.radius + (this.radius * 0.1); 
+
+                    // Fade out based on distance vs maxDist
+                    const alpha = Math.max(0, 1 - (this.radius / this.maxDist));
+                    
+                    // Draw trail
+                    ctx.beginPath();
+                    ctx.moveTo(this.originX, this.originY);
+                    ctx.lineTo(x, y);
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.15})`; 
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+
+                    // Draw head (the data square)
+                    ctx.fillStyle = this.color;
+                    ctx.globalAlpha = alpha; 
+                    ctx.fillRect(x - this.size / 2, y - this.size / 2, this.size, this.size);
+                    ctx.globalAlpha = 1.0; 
+                }
+            }
+
+            class Firework {
+                constructor() {
+                    this.x = Math.random() * (width - 40) + 20; // Keep within padded bounds
+                    this.y = Math.random() * (height - 40) + 20;
+                    this.particles = [];
+                    // Generate between 30 and 70 particles per firework
+                    const count = Math.floor(Math.random() * 40) + 30;
+                    for (let i = 0; i < count; i++) {
+                        this.particles.push(new FireworkParticle(this.x, this.y));
+                    }
+                }
+
+                update() {
+                    // Update all particles and filter out dead ones
+                    this.particles = this.particles.filter(p => p.update());
+                    return this.particles.length > 0; // The firework is "dead" when no particles are left
+                }
+
+                draw() {
+                    this.particles.forEach(p => p.draw());
+                }
+            }
+
+            const animate = () => {
+                // Dim the background slightly each frame to create trails/fade effect
+                // Using destination-out works well for transparent canvases
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.15)'; 
+                ctx.fillRect(0, 0, width, height);
+                ctx.globalCompositeOperation = 'source-over';
+
+                // Randomly spawn a new firework occasionally
+                if (currentFireworks.length < MAX_FIREWORKS && Math.random() < 0.03) {
+                    currentFireworks.push(new Firework());
+                }
+
+                // Update and draw existing fireworks
+                currentFireworks = currentFireworks.filter(fw => {
+                    fw.draw();
+                    return fw.update();
+                });
+
+                requestAnimationFrame(animate);
+            };
+
+            // Initialize
+            requestAnimationFrame(() => {
+                resize();
+                animate();
+            });
+
+            window.addEventListener('resize', () => {
+                resize();
+            });
+            window.addEventListener('load', resize);
+        })();
     </script>
 </body>
 
