@@ -56,14 +56,14 @@
             --social-tk: #00f2ea;
             /* Modern UI Tokens */
             --bg-deep: var(--brand-black);
-            --glass-surface: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-highlight: rgba(230, 0, 126, 0.3);
+            --glass-surface: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.7);
             --text-tertiary: rgba(255, 255, 255, 0.45);
             /* Physics & Spacing */
-            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
             --radius-xl: 32px;
             --radius-lg: 24px;
@@ -75,9 +75,13 @@
         }
 
         /* Reset & Base */
-        html,
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             overflow-x: hidden;
+            overscroll-behavior-y: none;
         }
 
         *,
@@ -114,6 +118,7 @@
             padding: 2rem 1rem;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             position: relative;
         }
 
@@ -210,7 +215,7 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             font-weight: 500;
             text-align: center;
             margin-top: -1.5rem;
@@ -232,14 +237,14 @@
 
         /* --- Glass Cards (The Standard) --- */
         .glass-card {
-            background: var(--glass-surface);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-xl);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 var(--glass-border);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
             overflow: hidden;
-            transition: transform 0.4s var(--ease-spring), border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.6s var(--ease-spring), border-color 0.6s ease, box-shadow 0.6s ease;
             display: flex;
             flex-direction: column;
             height: auto;
@@ -247,8 +252,8 @@
 
         .glass-card:hover {
             border-color: var(--glass-highlight);
-            box-shadow: 0 20px 40px -4px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(230, 0, 126, 0.2);
-            transform: translateY(-2px) translateZ(0);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px) translateZ(0);
         }
 
         /* --- Animation Utilities --- */
@@ -333,22 +338,22 @@
         }
 
         .bento-card {
-            background: var(--glass-surface);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-xl);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 var(--glass-border);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
             overflow: hidden;
-            transition: transform 0.4s var(--ease-spring), border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.6s var(--ease-spring), border-color 0.6s ease, box-shadow 0.6s ease;
             position: relative;
         }
 
         .bento-card:hover {
             border-color: var(--glass-highlight);
-            box-shadow: 0 20px 40px -4px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(230, 0, 126, 0.2);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
             /* Transform is handled by JS tilt now, but keep fallback */
-            transform: translateY(-2px);
+            transform: translateY(-4px);
         }
 
         /* --- Hero: Profile (Bento Main) --- */
@@ -538,7 +543,7 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             font-weight: 600;
         }
 
@@ -563,7 +568,7 @@
             color: #ffffff;
             margin-bottom: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             position: relative;
             display: inline-block;
         }
@@ -673,13 +678,18 @@
             border-radius: 100px;
         }
 
+        /* --- Performance & Render Enhancements --- */
+        /* Removed content-visibility: auto to prevent scroll jump and blanking issues */
+
         /* --- Premium White Section --- */
         .premium-white-section {
-            background-color: #ffffff;
+            background-color: #fbfbfd;
             border-radius: var(--radius-xl);
-            padding: 3rem 1.5rem;
-            margin-top: 0.5rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 4rem 2rem;
+            margin-top: 1rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05), 0 4px 16px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.6s ease;
         }
 
         .premium-white-section .premium-title {
@@ -716,67 +726,102 @@
         }
 
         .course-card {
-            border-radius: var(--radius-lg);
-            padding: 2rem;
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease;
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .course-card.pink {
-            background: var(--brand-pink);
-            color: #fff;
-        }
-
-        .course-card.black {
-            background: #110842;
-            color: #fff;
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease, border-color 0.4s ease;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .course-card h3 {
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .course-card.pink {
+            background: linear-gradient(135deg, rgba(230, 0, 126, 0.9) 0%, rgba(194, 0, 106, 0.95) 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(230, 0, 126, 0.15);
+        }
+
+        .course-card.black {
+            background: linear-gradient(135deg, rgba(28, 28, 30, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-title {
             font-family: var(--font-display);
             font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
             line-height: 1.2;
+            background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.8));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .course-subtitle {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            font-weight: 500;
         }
 
         .course-features {
             list-style: none;
             flex: 1;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
         .course-features li {
             font-size: 1rem;
-            margin-bottom: 0.8rem;
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
         }
 
         .course-features li::before {
-            content: '•';
-            font-size: 1.5rem;
-            line-height: 1;
+            content: '';
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-top: 3px;
         }
 
         .course-price-wrap {
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1.5rem;
             display: flex;
             align-items: baseline;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .course-card.black .course-price-wrap {
@@ -785,8 +830,8 @@
 
         .price-old {
             text-decoration: line-through;
-            opacity: 0.7;
-            font-size: 1rem;
+            opacity: 0.6;
+            font-size: 1.1rem;
         }
 
         .price-new {
@@ -834,35 +879,20 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 1.2rem 3rem;
+            padding: 1.2rem 3.5rem;
             font-family: var(--font-display);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             color: #fff;
-            background: linear-gradient(135deg, #ff8e00, #ff6a00);
+            background: linear-gradient(135deg, #ff8e00, #e65c00);
             border-radius: 100px;
             text-decoration: none;
-            box-shadow: 0 10px 30px rgba(255, 142, 0, 0.4);
-            transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease;
+            box-shadow: 0 15px 35px rgba(255, 142, 0, 0.3);
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
-            animation: ripple-pulse 2s infinite;
-        }
-
-        @keyframes ripple-pulse {
-            0% {
-                box-shadow: 0 10px 30px rgba(255, 142, 0, 0.4), 0 0 0 0 rgba(255, 142, 0, 0.6);
-            }
-
-            70% {
-                box-shadow: 0 10px 30px rgba(255, 142, 0, 0.4), 0 0 0 20px rgba(255, 142, 0, 0);
-            }
-
-            100% {
-                box-shadow: 0 10px 30px rgba(255, 142, 0, 0.4), 0 0 0 0 rgba(255, 142, 0, 0);
-            }
         }
 
         .journey-btn::after {
@@ -872,9 +902,9 @@
             left: -100%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transform: skewX(-20deg);
-            transition: left 0.5s ease;
+            transition: left 0.6s var(--ease-smooth);
         }
 
         .journey-btn:hover {
@@ -991,7 +1021,7 @@
             font-size: 0.75rem;
             color: var(--text-tertiary);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             font-weight: 700;
             display: block;
             margin-bottom: 1rem;
@@ -1234,7 +1264,7 @@
 </head>
 
 <body>
-    <div ="bg-mesh-container">
+    <div class="bg-mesh-container">
         <div class="mesh-blob blob-1"></div>
         <div class="mesh-blob blob-2"></div>
         <div class="mesh-blob blob-3"></div>
@@ -1255,7 +1285,7 @@
                     <div class="avatar-wrapper">
                         <div class="avatar-ring"></div>
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/f_auto/v1769918372/c30ddn490qurtiwwig1t.jpg"
-                            alt="Mahi Ahmed Marjan" class="avatar-img" width="200" height="200">
+                            alt="Mahi Ahmed Marjan" class="avatar-img" width="200" height="200" fetchpriority="high" decoding="async">
                     </div>
                     <div class="profile-content">
                         <h1>
@@ -1427,11 +1457,14 @@
         <section class="premium-white-section">
             <div class="courses-panel reveal delay-1">
                 <div class="course-card pink">
-                    <h3>SPOKEN & BASICS</h3>
+                    <h3 class="course-title">SPOKEN & BASICS</h3>
+                    <p class="course-subtitle">
+                        Overcome fear and hesitation. Speak with confidence and fluency
+                    </p>
                     <ul class="course-features">
                         <li>30 lessons</li>
                         <li>24/7 chat & call</li>
-                          <li>2.5 months</li>
+                        <li>2.5 months</li>
                     </ul>
                     <a href="https://docs.google.com/document/d/1QelpDb4PsWDt7-79iXwiT9aUlc1mNDleKrlm6bgtPWg/edit?usp=sharing"
                         target="_blank" rel="noopener noreferrer" class="course-dl-btn">
@@ -1443,9 +1476,9 @@
                     </div>
                 </div>
                 <div class="course-card pink">
-                    <h3 style="margin-bottom: 0.5rem;">COMPLETE IELTS</h3>
-                    <p style="font-weight: bold; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.95;">
-                        Speaking + Listening + Reading + Writing
+                    <h3 class="course-title">COMPLETE IELTS</h3>
+                    <p class="course-subtitle">
+                        Get the proven strategies to hit your target band score on your very first try.
                     </p>
                     <ul class="course-features">
                         <li>36 classes</li>
@@ -1458,7 +1491,10 @@
                     </div>
                 </div>
                 <div class="course-card black">
-                    <h3>WRITING for IELTS</h3>
+                    <h3 class="course-title">WRITING for IELTS</h3>
+                    <p class="course-subtitle">
+                        Easily write high-scoring Task 1 & 2 responses.
+                    </p>
                     <ul class="course-features">
                         <li>18 workshops</li>
                         <li>24/7 chat & call</li>
@@ -1471,7 +1507,10 @@
                     </div>
                 </div>
                 <div class="course-card black">
-                    <h3>READING for IELTS</h3>
+                    <h3 class="course-title">READING for IELTS</h3>
+                    <p class="course-subtitle">
+                        Solve the trickiest questions, read faster, and find answers quicker.
+                    </p>
                     <ul class="course-features">
                         <li>18 sessions</li>
                         <li>24/7 chat & call</li>
@@ -1490,7 +1529,7 @@
             </div>
         </section>
         <!-- Bottom Sections -->
-        <div class="bottom-grid">
+        <div class="bottom-grid content-vis">
             <!-- Resources -->
             <section class="glass-card resources-card reveal tilt-target">
                 <div class="card-header">
@@ -1500,25 +1539,25 @@
                     <a href="https://drive.google.com/drive/folders/1SK3hCqkA9lGxuEgdAfc9bZurw5tc8jhG?usp=sharing"
                         class="resource-item" target="_blank" rel="noopener noreferrer">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1769920083/writing.svg"
-                            class="res-icon" alt="Writing">
+                            class="res-icon" alt="Writing" loading="lazy" decoding="async">
                         <span class="res-label">Writing</span>
                     </a>
                     <a href="https://drive.google.com/drive/folders/1na7Kb6ITua_sI-1ruPI93eENupyJUdmc?usp=sharing"
                         class="resource-item delay-v-1" target="_blank" rel="noopener noreferrer">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1769920083/reading.svg"
-                            class="res-icon" alt="Reading">
+                            class="res-icon" alt="Reading" loading="lazy" decoding="async">
                         <span class="res-label">Reading</span>
                     </a>
                     <a href="https://drive.google.com/drive/folders/1uHwARv-wga8kSHZhz8DhJ57TwH1Z2izo?usp=sharing"
                         class="resource-item delay-v-2" target="_blank" rel="noopener noreferrer">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1769920083/speaking.svg"
-                            class="res-icon" alt="Speaking">
+                            class="res-icon" alt="Speaking" loading="lazy" decoding="async">
                         <span class="res-label">Speaking</span>
                     </a>
                     <a href="https://drive.google.com/drive/folders/1uh9X8-pcXhxwtrONSd3Z2DQyGHy520xL?usp=sharing"
                         class="resource-item delay-v-3" target="_blank" rel="noopener noreferrer">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1769920083/support%20materials.svg"
-                            class="res-icon" alt="Spoken">
+                            class="res-icon" alt="Spoken" loading="lazy" decoding="async">
                         <span class="res-label">Basics</span>
                     </a>
                 </div>
@@ -1607,21 +1646,28 @@
                 const tiltTargets = document.querySelectorAll('.tilt-target');
 
                 tiltTargets.forEach(target => {
+                    let ticking = false;
+
                     target.addEventListener('mousemove', (e) => {
-                        const rect = target.getBoundingClientRect();
-                        const x = e.clientX - rect.left; // x position within the element
-                        const y = e.clientY - rect.top;  // y position within the element
+                        if (!ticking) {
+                            window.requestAnimationFrame(() => {
+                                const rect = target.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
 
-                        const centerX = rect.width / 2;
-                        const centerY = rect.height / 2;
+                                const centerX = rect.width / 2;
+                                const centerY = rect.height / 2;
 
-                        // Calculate rotation based on cursor position (max 10 degrees)
-                        const rotateX = ((y - centerY) / centerY) * -10;
-                        const rotateY = ((x - centerX) / centerX) * 10;
+                                const rotateX = ((y - centerY) / centerY) * -10;
+                                const rotateY = ((x - centerX) / centerX) * 10;
 
-                        target.style.transform = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                        target.style.transition = 'none'; // Disable transition for instant follow
-                    });
+                                target.style.transform = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                                target.style.transition = 'none';
+                                ticking = false;
+                            });
+                            ticking = true;
+                        }
+                    }, { passive: true });
 
                     target.addEventListener('mouseleave', () => {
                         // Reset rotation when mouse leaves
@@ -1639,4 +1685,3 @@
 </body>
 
 </html>
-
