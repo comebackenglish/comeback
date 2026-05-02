@@ -18,7 +18,7 @@
     <meta name="description"
         content="I've helped over 5,000 students speak with confidence and achieve their desired IELTS score. Let's reach your language goals together.">
     <link rel="icon"
-        href="https://res.cloudinary.com/dmskxohrr/image/upload/f_auto/v1769865345/yj7dliyyblx77qkipwjs.png"
+        href="https://res.cloudinary.com/dmskxohrr/image/upload/f_auto/v1769865345/hjo9kyoymjf81p4epkvj.jpg"
         type="image/png">
     <script type="application/ld+json">
 {
@@ -748,8 +748,11 @@
         .course-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 60%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent 60%);
             pointer-events: none;
         }
 
@@ -786,7 +789,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.35rem;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             animation: badge-float 3s ease-in-out infinite;
@@ -801,7 +804,7 @@
             background: rgba(255, 255, 255, 0.15);
             color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: inset 0 0 10px rgba(255,255,255,0.1), 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .badge-popular {
@@ -811,8 +814,15 @@
         }
 
         @keyframes badge-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
         }
 
         .course-title {
@@ -916,6 +926,50 @@
 
         .course-card.black .course-dl-btn {
             color: #110842;
+        }
+
+        .course-dl-btn.btn-blue {
+            background: #1877F2;
+            color: #fff;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            align-self: flex-start;
+        }
+
+        .course-dl-btn.btn-blue:hover {
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
+        }
+
+        .course-dl-btn.ripple-btn {
+            position: relative;
+        }
+
+        .course-dl-btn.ripple-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 100px;
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            animation: btn-ripple-anim 1.5s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes btn-ripple-anim {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
         }
 
         /* Journey CTA Button */
@@ -1373,7 +1427,8 @@
                     <div class="avatar-wrapper">
                         <div class="avatar-ring"></div>
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/f_auto/v1769918372/c30ddn490qurtiwwig1t.jpg"
-                            alt="Mahi Ahmed Marjan" class="avatar-img" width="200" height="200" fetchpriority="high" decoding="async">
+                            alt="Mahi Ahmed Marjan" class="avatar-img" width="200" height="200" fetchpriority="high"
+                            decoding="async">
                     </div>
                     <div class="profile-content">
                         <h1>
@@ -1443,10 +1498,17 @@
             <div class="courses-panel reveal delay-1">
                 <div class="course-card pink">
                     <div class="course-badge badge-value">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"></path></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 3h12l4 6-10 13L2 9Z"></path>
+                        </svg>
                         Best Value
                     </div>
                     <h3 class="course-title">SPOKEN English</h3>
+                    <a href="https://docs.google.com/document/d/1QelpDb4PsWDt7-79iXwiT9aUlc1mNDleKrlm6bgtPWg/edit?usp=sharing"
+                        target="_blank" rel="noopener noreferrer" class="course-dl-btn btn-blue">
+                        See Course Content
+                    </a>
                     <p class="course-subtitle">
                         Overcome fear and hesitation. Speak with confidence and fluency
                     </p>
@@ -1455,18 +1517,22 @@
                         <li>24/7 chat & call</li>
                         <li>2 months</li>
                     </ul>
-                    <a href="https://docs.google.com/document/d/1QelpDb4PsWDt7-79iXwiT9aUlc1mNDleKrlm6bgtPWg/edit?usp=sharing"
-                        target="_blank" rel="noopener noreferrer" class="course-dl-btn">
-                        See Course Content
+                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
+                        class="course-dl-btn ripple-btn">
+                        Start Learning
                     </a>
                     <div class="course-price-wrap">
-                        <span class="price-old">৳4500</span>
-                        <span class="price-new">৳1500</span>
+                        <span class="price-old">৳5000</span>
+                        <span class="price-new">৳2490</span>
                     </div>
                 </div>
                 <div class="course-card pink">
                     <div class="course-badge badge-popular">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
                         Most Popular
                     </div>
                     <h3 class="course-title">COMPLETE IELTS</h3>
@@ -1476,8 +1542,12 @@
                     <ul class="course-features">
                         <li>36 classes</li>
                         <li>24/7 chat & call</li>
-                         <li>3 months</li>
+                        <li>3 months</li>
                     </ul>
+                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
+                        class="course-dl-btn ripple-btn">
+                        Start Learning
+                    </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳18000</span>
                         <span class="price-new">৳8990</span>
@@ -1493,6 +1563,10 @@
                         <li>24/7 chat & call</li>
                         <li>1.5 month</li>
                     </ul>
+                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
+                        class="course-dl-btn ripple-btn">
+                        Start Learning
+                    </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳6000</span>
                         <span class="price-new">৳2990</span>
@@ -1506,18 +1580,36 @@
                     <ul class="course-features">
                         <li>18 sessions</li>
                         <li>24/7 chat & call</li>
-                         <li>1.5 month</li>
+                        <li>1.5 month</li>
                     </ul>
+                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
+                        class="course-dl-btn ripple-btn">
+                        Start Learning
+                    </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳6000</span>
                         <span class="price-new">৳2990</span>
                     </div>
                 </div>
-            </div>
-            <!-- Call to Action Button -->
-            <div class="journey-cta-container reveal delay-2">
-                <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                    class="journey-btn">Start Learning</a>
+                <div class="course-card black">
+                    <h3 class="course-title">SPEAKING for IELTS</h3>
+                    <p class="course-subtitle">
+                        Boost your speaking confidence and fluency for the IELTS exam.
+                    </p>
+                    <ul class="course-features">
+                        <li>35 classes</li>
+                        <li>24/7 chat & call</li>
+                        <li>1.5 month</li>
+                    </ul>
+                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
+                        class="course-dl-btn ripple-btn">
+                        Start Learning
+                    </a>
+                    <div class="course-price-wrap">
+                        <span class="price-old">৳8000</span>
+                        <span class="price-new">৳3990</span>
+                    </div>
+                </div>
             </div>
         </section>
         <!-- Bottom Sections -->
@@ -1556,6 +1648,9 @@
             </section>
             <!-- Community -->
             <section class="glass-card community-card reveal delay-1 tilt-target">
+                <div class="card-header">
+                    <div class="card-title">Connect</div>
+                </div>
                 <div class="join-grid">
                     <a href="https://www.facebook.com/share/g/1HKtCj4j95/" class="social-btn-lg btn-fb" target="_blank"
                         rel="noopener noreferrer">
@@ -1598,8 +1693,35 @@
                     <a href="https://t.me/comebackenglish" class="dock-item di-tg delay-v-4" target="_blank"
                         rel="noopener noreferrer" aria-label="Telegram">
                         <svg viewBox="0 0 32 32">
-                            <path fill="currentColor" d="M22.9866 10.2088C23.1112 9.40332 22.3454 8.76755 21.6292 9.082L7.36482 15.3448C6.85123 15.5703 6.8888 16.3483 7.42147 16.5179L10.3631 17.4547C10.9246 17.6335 11.5325 17.541 12.0228 17.2023L18.655 12.6203C18.855 12.4821 19.073 12.7665 18.9021 12.9426L14.1281 17.8646C13.665 18.3421 13.7569 19.1512 14.314 19.5005L19.659 22.8523C20.2585 23.2282 21.0297 22.8506 21.1418 22.1261L22.9866 10.2088Z"/>
+                            <path fill="currentColor"
+                                d="M22.9866 10.2088C23.1112 9.40332 22.3454 8.76755 21.6292 9.082L7.36482 15.3448C6.85123 15.5703 6.8888 16.3483 7.42147 16.5179L10.3631 17.4547C10.9246 17.6335 11.5325 17.541 12.0228 17.2023L18.655 12.6203C18.855 12.4821 19.073 12.7665 18.9021 12.9426L14.1281 17.8646C13.665 18.3421 13.7569 19.1512 14.314 19.5005L19.659 22.8523C20.2585 23.2282 21.0297 22.8506 21.1418 22.1261L22.9866 10.2088Z" />
                         </svg>
+                    </a>
+                </div>
+                <hr class="separator" style="margin-top: 1.5rem;">
+                <div class="contact-info"
+                    style="display: flex; flex-direction: column; gap: 0.8rem; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 500; color: rgba(255, 255, 255, 0.9);">
+                    <a href="tel:+8801309993730"
+                        style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;"
+                        onmouseover="this.style.color='#e6007e'" onmouseout="this.style.color=''">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        +8801309993730
+                    </a>
+                    <a href="mailto:comebackenglish@gmail.com"
+                        style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;"
+                        onmouseover="this.style.color='#e6007e'" onmouseout="this.style.color=''">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        comebackenglish@gmail.com
                     </a>
                 </div>
             </section>
@@ -1683,22 +1805,22 @@
 
     <!-- Data Burst Animation Script -->
     <script type="module">
-        (function() {
+        (function () {
             const canvas = document.getElementById('dataBurstCanvas');
             if (!canvas) return;
 
             const ctx = canvas.getContext('2d');
             const section = document.getElementById('data-burst-section');
             const originNode = document.getElementById('burst-origin-node');
-            
+
             const colors = [
-                '#008060', '#00749C', '#2563EB', '#4285F4', '#0EA5E9', 
-                '#64748B', '#F59E0B', '#D97706', '#0F9D58', '#8B5CF6', 
+                '#008060', '#00749C', '#2563EB', '#4285F4', '#0EA5E9',
+                '#64748B', '#F59E0B', '#D97706', '#0F9D58', '#8B5CF6',
                 '#FF4F00', '#FF4500', '#0668E1', '#F9AB00', '#E60023', '#0077B5'
             ];
 
             let particles = [];
-            const numParticles = 150; 
+            const numParticles = 150;
             let originX, originY;
             let width, height;
 
@@ -1706,7 +1828,7 @@
                 if (originNode && section) {
                     const iconRect = originNode.getBoundingClientRect();
                     const sectionRect = section.getBoundingClientRect();
-                    
+
                     originX = (iconRect.left + iconRect.width / 2) - sectionRect.left;
                     originY = (iconRect.top + iconRect.height / 2) - sectionRect.top;
                 } else {
@@ -1718,7 +1840,7 @@
             const resizeCanvasSync = () => {
                 width = canvas.width = section.offsetWidth;
                 height = canvas.height = section.offsetHeight;
-                updateOrigin(); 
+                updateOrigin();
             };
 
             let resizeTimeout;
@@ -1737,16 +1859,16 @@
 
                 init() {
                     this.angle = Math.random() * Math.PI * 2;
-                    this.speed = 0.2 + Math.random() * 0.4; 
-                    this.size = 2 + Math.random() * 3; 
+                    this.speed = 0.2 + Math.random() * 0.4;
+                    this.size = 2 + Math.random() * 3;
                     this.color = colors[Math.floor(Math.random() * colors.length)];
-                    
+
                     const maxDistX = Math.max(originX, width - originX);
                     const maxDistY = Math.max(originY, height - originY);
                     this.maxDist = Math.sqrt(maxDistX * maxDistX + maxDistY * maxDistY);
-                    
+
                     if (this.firstRun) {
-                        this.radius = Math.random() * -this.maxDist; 
+                        this.radius = Math.random() * -this.maxDist;
                         this.firstRun = false;
                     } else {
                         this.radius = 0;
@@ -1766,24 +1888,24 @@
                 }
 
                 draw() {
-                    if (this.radius < 0) return; 
+                    if (this.radius < 0) return;
 
                     const x = originX + Math.cos(this.angle) * this.radius;
                     const y = originY + Math.sin(this.angle) * this.radius;
 
                     const alpha = Math.max(0, 1 - (this.radius / this.maxDist));
-                    
+
                     ctx.beginPath();
                     ctx.moveTo(originX, originY);
                     ctx.lineTo(x, y);
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.08})`; 
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.08})`;
                     ctx.lineWidth = 1;
                     ctx.stroke();
 
                     ctx.fillStyle = this.color;
-                    ctx.globalAlpha = alpha; 
+                    ctx.globalAlpha = alpha;
                     ctx.fillRect(x - this.size / 2, y - this.size / 2, this.size, this.size);
-                    ctx.globalAlpha = 1.0; 
+                    ctx.globalAlpha = 1.0;
                 }
             }
 
@@ -1823,7 +1945,7 @@
             window.addEventListener('resize', () => {
                 resize();
             });
-            
+
             window.addEventListener('load', resizeCanvasSync);
         })();
     </script>
