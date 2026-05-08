@@ -1495,16 +1495,6 @@
         </div>
 
         <section class="premium-white-section">
-            <div class="offer-header" style="text-align: center; margin-bottom: 2rem; animation: fade-up 0.8s var(--ease-smooth) forwards;">
-                <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); color: var(--brand-pink); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(230,0,126,0.3);">কুরবানি অফার</h2>
-                <div class="countdown-container" style="display: inline-flex; flex-direction: column; align-items: center; background: rgba(255, 255, 255, 0.9); padding: 1.5rem 2.5rem; border-radius: var(--radius-xl); border: 2px solid var(--brand-pink); box-shadow: 0 10px 30px rgba(230,0,126,0.15);">
-                    <div style="font-size: 1.1rem; color: var(--brand-black); font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.5rem;">Ending Soon</div>
-                    <div id="countdown-timer" style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--brand-pink); display: flex; gap: 0.5rem; line-height: 1;">
-                        <span id="cd-hours">00</span>:<span id="cd-minutes">00</span>:<span id="cd-seconds">00</span>
-                    </div>
-                    <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Time Left</div>
-                </div>
-            </div>
             <div class="courses-panel reveal delay-1">
                 <div class="course-card pink">
                     <div class="course-badge badge-value">
@@ -1533,7 +1523,7 @@
                     </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳4000</span>
-                        <span class="price-new">১৫০০/=</span>
+                        <span class="price-new">৳1990</span>
                     </div>
                 </div>
                 <div class="course-card pink">
@@ -1560,7 +1550,7 @@
                     </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳16000</span>
-                        <span class="price-new">১৫০০/=</span>
+                        <span class="price-new">৳7990</span>
                     </div>
                 </div>
                 <div class="course-card black">
@@ -1579,7 +1569,7 @@
                     </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳5000</span>
-                        <span class="price-new">১৫০০/=</span>
+                        <span class="price-new">৳2490</span>
                     </div>
                 </div>
                 <div class="course-card black">
@@ -1598,7 +1588,7 @@
                     </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳5000</span>
-                        <span class="price-new">১৫০০/=</span>
+                        <span class="price-new">৳2490</span>
                     </div>
                 </div>
                 <div class="course-card black">
@@ -1617,7 +1607,7 @@
                     </a>
                     <div class="course-price-wrap">
                         <span class="price-old">৳6000</span>
-                        <span class="price-new">১৫০০/=</span>
+                        <span class="price-new">৳2990</span>
                     </div>
                 </div>
             </div>
@@ -1958,30 +1948,6 @@
 
             window.addEventListener('load', resizeCanvasSync);
         })();
-
-        // Countdown Timer Logic
-        function updateCountdown() {
-            const now = new Date();
-            const endOfDay = new Date();
-            endOfDay.setHours(23, 59, 59, 999);
-            
-            const diff = endOfDay - now;
-            
-            if (diff > 0) {
-                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                const elH = document.getElementById('cd-hours');
-                const elM = document.getElementById('cd-minutes');
-                const elS = document.getElementById('cd-seconds');
-                if(elH) elH.textContent = h.toString().padStart(2, '0');
-                if(elM) elM.textContent = m.toString().padStart(2, '0');
-                if(elS) elS.textContent = s.toString().padStart(2, '0');
-            }
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
     </script>
 </body>
 
