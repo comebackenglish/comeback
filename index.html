@@ -774,6 +774,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
+        .course-card.blue {
+            background: linear-gradient(135deg, rgba(24, 119, 242, 0.9) 0%, rgba(11, 75, 170, 0.95) 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(24, 119, 242, 0.15);
+        }
+
         .course-badge {
             position: absolute;
             top: 1.5rem;
@@ -885,7 +891,8 @@
             gap: 0.75rem;
         }
 
-        .course-card.black .course-price-wrap {
+        .course-card.black .course-price-wrap,
+        .course-card.blue .course-price-wrap {
             border-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -926,6 +933,10 @@
 
         .course-card.black .course-dl-btn {
             color: #110842;
+        }
+
+        .course-card.blue .course-dl-btn {
+            color: #1877F2;
         }
 
         .course-dl-btn.btn-blue {
@@ -1608,6 +1619,23 @@
                     <div class="course-price-wrap">
                         <span class="price-old">৳8000</span>
                         <span class="price-new">৳3999</span>
+                    </div>
+                </div>
+                <div class="course-card blue">
+                    <h3 class="course-title">LIVE TEST</h3>
+                    <p class="course-subtitle">
+                        Evaluate your preparation with our mock test feedback.
+                    </p>
+                    <ul class="course-features">
+                        <li>1 IELTS speaking test</li>
+                        <li>1 IELTS Writing checking</li>
+                    </ul>
+                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
+                        class="course-dl-btn ripple-btn">
+                        Start Learning
+                    </a>
+                    <div class="course-price-wrap">
+                        <span class="price-new">৳999</span>
                     </div>
                 </div>
             </div>
