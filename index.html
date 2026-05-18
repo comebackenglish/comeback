@@ -14,7 +14,7 @@
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>COMEBACK ENGLISH | Think, Speak & Dream</title>
+    <title>COMEBACK ENGLISH | 1,2,3...Let's Go</title>
     <meta name="description"
         content="I've helped over 5,000 students speak with confidence and achieve their desired IELTS score. Let's reach your language goals together.">
     <link rel="icon"
@@ -55,13 +55,13 @@
             --social-ig: #E1306C;
             --social-tk: #00f2ea;
             /* Modern UI Tokens */
-            --bg-deep: #ffffff;
-            --glass-surface: rgba(0, 0, 0, 0.02);
-            --glass-border: rgba(0, 0, 0, 0.08);
-            --glass-highlight: rgba(0, 0, 0, 0.15);
-            --text-primary: #050507;
-            --text-secondary: rgba(0, 0, 0, 0.7);
-            --text-tertiary: rgba(0, 0, 0, 0.45);
+            --bg-deep: var(--brand-black);
+            --glass-surface: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-tertiary: rgba(255, 255, 255, 0.45);
             /* Physics & Spacing */
             --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -150,7 +150,7 @@
             right: -20%;
             width: 80vw;
             height: 80vw;
-            background: radial-gradient(circle, rgba(0, 0, 0, 0.05), transparent 70%);
+            background: radial-gradient(circle, #0a1018, transparent 70%);
             animation-delay: -5s;
         }
 
@@ -173,7 +173,15 @@
             }
         }
 
-
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            mix-blend-mode: overlay;
+        }
 
         /* --- Header --- */
         .header-wrapper {
@@ -228,12 +236,12 @@
 
         /* --- Glass Cards (The Standard) --- */
         .glass-card {
-            background: linear-gradient(145deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.01) 100%);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-xl);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
             overflow: hidden;
             transition: transform 0.6s var(--ease-spring), border-color 0.6s ease, box-shadow 0.6s ease;
             display: flex;
@@ -243,7 +251,7 @@
 
         .glass-card:hover {
             border-color: var(--glass-highlight);
-            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
             transform: translateY(-4px) translateZ(0);
         }
 
@@ -320,12 +328,12 @@
         }
 
         .bento-card {
-            background: linear-gradient(145deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.01) 100%);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-xl);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
             overflow: hidden;
             transition: transform 0.6s var(--ease-spring), border-color 0.6s ease, box-shadow 0.6s ease;
             position: relative;
@@ -333,7 +341,7 @@
 
         .bento-card:hover {
             border-color: var(--glass-highlight);
-            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
             /* Transform is handled by JS tilt now, but keep fallback */
             transform: translateY(-4px);
         }
@@ -342,7 +350,13 @@
         .profile-card {
             padding: 2rem 1.5rem;
             text-align: center;
-            background: radial-gradient(circle at top right, rgba(230, 0, 126, 0.05), transparent 60%), var(--glass-surface);
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at top right, rgba(230, 0, 126, 0.05), transparent 60%),
+                var(--glass-surface);
+            background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+            background-position: center center;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -424,7 +438,7 @@
         .h1-think,
         .h1-speak,
         .h1-dream {
-            color: var(--brand-black);
+            color: #ffffff;
             font-family: 'Denzel', 'Denzel Bold', var(--font-display);
             font-weight: bold;
             text-shadow: none;
@@ -460,7 +474,7 @@
         }
 
         .yt-highlight:hover {
-            color: var(--brand-black);
+            color: #fff;
             border-bottom-style: solid;
         }
 
@@ -486,7 +500,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(230, 0, 126, 0.05), rgba(0, 0, 0, 0.05)), var(--glass-surface);
+            background: linear-gradient(135deg, rgba(230, 0, 126, 0.1), rgba(0, 0, 0, 0.3)), var(--glass-surface);
             position: relative;
         }
 
@@ -501,7 +515,7 @@
         .stat-group+.stat-group {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
         }
 
         .stat-icon {
@@ -534,7 +548,7 @@
             font-family: var(--font-display);
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--brand-black);
+            color: #fff;
             line-height: 1;
             margin-bottom: 0.25rem;
         }
@@ -744,8 +758,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent 60%);
+            background: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='rgba(255,255,255,0.1)' stroke='rgba(255,255,255,0.06)' stroke-width='1'%3E%3Cline x1='20' y1='30' x2='60' y2='50'/%3E%3Cline x1='60' y1='50' x2='120' y2='40'/%3E%3Cline x1='60' y1='50' x2='30' y2='100'/%3E%3Cline x1='60' y1='50' x2='90' y2='110'/%3E%3Cline x1='120' y1='40' x2='140' y2='90'/%3E%3Cline x1='90' y1='110' x2='140' y2='90'/%3E%3Cline x1='30' y1='100' x2='90' y2='110'/%3E%3Cpolygon points='30,100 90,110 60,50' fill='rgba(255,255,255,0.02)'/%3E%3Cpolygon points='120,30 130,35 130,45 120,50 110,45 110,35' fill='rgba(255,255,255,0.03)' stroke='rgba(255,255,255,0.15)'/%3E%3Cpolygon points='20,20 30,20 35,30 25,38 15,30' fill='rgba(255,255,255,0.02)' stroke='rgba(255,255,255,0.12)'/%3E%3Cpolygon points='80,90 90,85 100,90 100,100 90,105 80,100' fill='none' stroke='rgba(255,255,255,0.15)'/%3E%3Cline x1='80' y1='90' x2='100' y2='90' stroke='rgba(255,255,255,0.1)' stroke-dasharray='2,2'/%3E%3Cline x1='90' y1='85' x2='90' y2='105' stroke='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='20' cy='30' r='1.5' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='60' cy='50' r='2' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='120' cy='40' r='1.5' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='30' cy='100' r='2' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='90' cy='110' r='1.5' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='140' cy='90' r='1.5' fill='rgba(255,255,255,0.3)'/%3E%3Cpolygon points='50,130 55,125 60,130 55,135' fill='none' stroke='rgba(255,255,255,0.2)'/%3E%3Cline x1='130' y1='130' x2='140' y2='130' stroke='rgba(255,255,255,0.2)'/%3E%3Cline x1='135' y1='125' x2='135' y2='135' stroke='rgba(255,255,255,0.2)'/%3E%3C/g%3E%3C/svg%3E"),
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent 60%);
             pointer-events: none;
+        }
+
+        .course-card.black::before {
+            opacity: 0.35;
         }
 
         .course-card:hover {
@@ -764,24 +784,6 @@
             background: linear-gradient(135deg, rgba(28, 28, 30, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
             color: #fff;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .course-card.blue {
-            background: linear-gradient(135deg, rgba(24, 119, 242, 0.9) 0%, rgba(11, 75, 170, 0.95) 100%);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(24, 119, 242, 0.15);
-        }
-
-        .course-card.grey {
-            background: linear-gradient(135deg, rgba(107, 114, 128, 0.9) 0%, rgba(75, 85, 99, 0.95) 100%);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(107, 114, 128, 0.15);
-        }
-
-        .course-card.orange {
-            background: linear-gradient(135deg, rgba(255, 142, 0, 0.9) 0%, rgba(230, 92, 0, 0.95) 100%);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(255, 142, 0, 0.15);
         }
 
         .course-badge {
@@ -895,10 +897,7 @@
             gap: 0.75rem;
         }
 
-        .course-card.black .course-price-wrap,
-        .course-card.blue .course-price-wrap,
-        .course-card.grey .course-price-wrap,
-        .course-card.orange .course-price-wrap {
+        .course-card.black .course-price-wrap {
             border-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -939,18 +938,6 @@
 
         .course-card.black .course-dl-btn {
             color: #110842;
-        }
-
-        .course-card.blue .course-dl-btn {
-            color: #1877F2;
-        }
-
-        .course-card.grey .course-dl-btn {
-            color: #4b5563;
-        }
-
-        .course-card.orange .course-dl-btn {
-            color: #e65c00;
         }
 
         .course-dl-btn.btn-blue {
@@ -1082,7 +1069,7 @@
             font-family: var(--font-display);
             font-size: 1.25rem;
             font-weight: 700;
-            color: var(--brand-black);
+            color: #fff;
         }
 
         .grid-menu {
@@ -1145,6 +1132,14 @@
         .community-card {
             padding: 1.5rem;
             position: relative;
+        }
+
+        .community-card {
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100 C 40 80, 60 20, 100 0' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='0.5'/%3E%3C/svg%3E"),
+                linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            background-size: 100% 100%, 100% 100%;
+            background-repeat: no-repeat;
         }
 
         .section-label {
@@ -1436,11 +1431,12 @@
         <div class="mesh-blob blob-2"></div>
         <div class="mesh-blob blob-3"></div>
     </div>
+    <div class="noise-overlay"></div>
     <header class="header-wrapper">
         <div class="brand-container">
             <span class="brand-text">COMEBACK</span>
         </div>
-        <div class="brand-motto">Think | Speak | Dream</div>
+        <div class="brand-motto">1,2,3...Let's go</div>
     </header>
     <main class="main-container">
         <!-- Bento Grid Hero Section -->
@@ -1526,7 +1522,7 @@
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M6 3h12l4 6-10 13L2 9Z"></path>
                         </svg>
-                        সবার লাগে
+                        Best Value
                     </div>
                     <h3 class="course-title">SPOKEN English</h3>
                     <a href="https://docs.google.com/document/d/1QelpDb4PsWDt7-79iXwiT9aUlc1mNDleKrlm6bgtPWg/edit?usp=sharing"
@@ -1534,7 +1530,7 @@
                         See Course Content
                     </a>
                     <p class="course-subtitle">
-                        গুল্লি মারেন গ্রামার, প্রথমে শিখবেন English। পরে প্রয়োজনমতো গ্রামার শিখাবো, আর গ্রামারও এমনভাবে শিখাবো যে বরিং লাগার কোনো চান্স নাই
+                        Overcome fear and hesitation. Speak with confidence and fluency
                     </p>
                     <ul class="course-features">
                         <li>24 lessons</li>
@@ -1546,8 +1542,8 @@
                         Start Learning
                     </a>
                     <div class="course-price-wrap">
-                        <span class="price-old">৳4000</span>
-                        <span class="price-new">৳1999</span>
+                        <span class="price-old">৳5000</span>
+                        <span class="price-new">৳2490</span>
                     </div>
                 </div>
                 <div class="course-card pink">
@@ -1557,11 +1553,11 @@
                                 d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                             </path>
                         </svg>
-                        বেশী প্রয়োজন
+                        Most Popular
                     </div>
                     <h3 class="course-title">COMPLETE IELTS</h3>
                     <p class="course-subtitle">
-                        চারটা স্কিল অর্জন করবেন এই কোর্সের মাধ্যমে। রিডিং,লিসেনিং,স্পিকিং,রাইটিং
+                        Get the proven strategies to hit your target band score on your very first try.
                     </p>
                     <ul class="course-features">
                         <li>36 classes</li>
@@ -1573,55 +1569,11 @@
                         Start Learning
                     </a>
                     <div class="course-price-wrap">
-                        <span class="price-old">৳14000</span>
-                        <span class="price-new">৳6999</span>
+                        <span class="price-old">৳18000</span>
+                        <span class="price-new">৳8990</span>
                     </div>
                 </div>
                 <div class="course-card black">
-                    <div class="course-badge badge-popular" style="background: linear-gradient(135deg, #00C853 0%, #009624 100%); color: #fff;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                        </svg>
-                        ব্রেইনফেইল কম্বো
-                    </div>
-                    <h3 class="course-title">IELTS READING + WRITING both</h3>
-                    <p class="course-subtitle">
-                        এই কোর্স করলে রিডিং & রাইটিং-এ একেবারে Pro হয়ে যাবেন। একেক ক্লাসে রীতিমতো পোস্টমর্টেম হবে রিডিং, রাইটিং এর, আর এমনভাবে হবে যে আপনি না শিখতে চাইলেও আমি শিখিয়ে ছাড়বো।
-                    </p>
-                    <ul class="course-features">
-                        <li>36 combined sessions</li>
-                        <li>24/7 chat & call</li>
-                        <li>3 months</li>
-                    </ul>
-                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                        class="course-dl-btn ripple-btn">
-                        Start Learning
-                    </a>
-                    <div class="course-price-wrap">
-                        <span class="price-old">৳6000</span>
-                        <span class="price-new">৳4500</span>
-                    </div>
-                </div>
-                <div class="course-card orange">
-                    <h3 class="course-title">SPEAKING for IELTS</h3>
-                    <p class="course-subtitle">
-                        মাক্কারের সব কিউ কার্ড ৩৫ টা স্টোরি দিয়ে ডান।
-                    </p>
-                    <ul class="course-features">
-                        <li>All Cue Cards 35 Stories in 2 months</li>
-                        <li>Part 1, Part 2 and Part 3</li>
-                        <li>LIve Class and Community Practice</li>
-                    </ul>
-                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                        class="course-dl-btn ripple-btn">
-                        Start Learning
-                    </a>
-                    <div class="course-price-wrap">
-                        <span class="price-old">৳8000</span>
-                        <span class="price-new">৳2999</span>
-                    </div>
-                </div>
-                <div class="course-card grey">
                     <h3 class="course-title">WRITING for IELTS</h3>
                     <p class="course-subtitle">
                         Easily write high-scoring Task 1 & 2 responses.
@@ -1636,11 +1588,11 @@
                         Start Learning
                     </a>
                     <div class="course-price-wrap">
-                        <span class="price-old">৳8000</span>
-                        <span class="price-new">৳2999</span>
+                        <span class="price-old">৳6000</span>
+                        <span class="price-new">৳2990</span>
                     </div>
                 </div>
-                <div class="course-card grey">
+                <div class="course-card black">
                     <h3 class="course-title">READING for IELTS</h3>
                     <p class="course-subtitle">
                         Solve the trickiest questions, read faster, and find answers quicker.
@@ -1655,27 +1607,27 @@
                         Start Learning
                     </a>
                     <div class="course-price-wrap">
-                        <span class="price-old">৳8000</span>
-                        <span class="price-new">৳2999</span>
+                        <span class="price-old">৳6000</span>
+                        <span class="price-new">৳2990</span>
                     </div>
                 </div>
-
-                <div class="course-card blue">
-                    <h3 class="course-title">মাহি ভাইয়ের সাথে, একান্তে!</h3>
+                <div class="course-card black">
+                    <h3 class="course-title">SPEAKING for IELTS</h3>
                     <p class="course-subtitle">
-                    আমার জীবনের ৪০ মিনিট আপনার
+                        Boost your speaking confidence and fluency for the IELTS exam.
                     </p>
                     <ul class="course-features">
-                         <li>1on1 Session for 40 minutes</li>
-                        <li>1 IELTS Speaking Test</li>
-                        <li>1 IELTS Writing Checking</li>
+                        <li>35 classes</li>
+                        <li>24/7 chat & call</li>
+                        <li>1.5 month</li>
                     </ul>
                     <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
                         class="course-dl-btn ripple-btn">
                         Start Learning
                     </a>
                     <div class="course-price-wrap">
-                        <span class="price-new">৳1000</span>
+                        <span class="price-old">৳8000</span>
+                        <span class="price-new">৳3990</span>
                     </div>
                 </div>
             </div>
@@ -1768,7 +1720,7 @@
                 </div>
                 <hr class="separator" style="margin-top: 1.5rem;">
                 <div class="contact-info"
-                    style="display: flex; flex-direction: column; gap: 0.8rem; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 500; color: rgba(0, 0, 0, 0.9);">
+                    style="display: flex; flex-direction: column; gap: 0.8rem; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 500; color: rgba(255, 255, 255, 0.9);">
                     <a href="tel:+8801309993730"
                         style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;"
                         onmouseover="this.style.color='#e6007e'" onmouseout="this.style.color=''">
@@ -1966,7 +1918,7 @@
                     ctx.beginPath();
                     ctx.moveTo(originX, originY);
                     ctx.lineTo(x, y);
-                    ctx.strokeStyle = `rgba(0, 0, 0, ${alpha * 0.08})`;
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.08})`;
                     ctx.lineWidth = 1;
                     ctx.stroke();
 
