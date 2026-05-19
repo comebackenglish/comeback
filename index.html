@@ -743,9 +743,7 @@
         }
 
         .course-card {
-            height: auto;
-            min-height: min-content;
-            aspect-ratio: 1 / 1;
+            height: 100%;
             border-radius: var(--radius-xl);
             padding: 1.25rem;
             display: flex;
@@ -786,10 +784,11 @@
                 font-size: 1.6rem;
             }
             .course-badge {
-                top: 1rem;
-                right: 1rem;
-                padding: 0.3rem 0.6rem;
-                font-size: 0.7rem;
+                top: 0.75rem;
+                right: 0.75rem;
+                width: 60px;
+                height: 60px;
+                font-size: 0.55rem;
             }
             .course-dl-btn {
                 margin-bottom: 1rem;
@@ -847,28 +846,33 @@
 
         .course-badge {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            padding: 0.4rem 0.8rem;
-            border-radius: 100px;
+            top: 1rem;
+            right: 1rem;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             font-family: var(--font-display);
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
             z-index: 10;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            padding: 0.5rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             animation: badge-float 3s ease-in-out infinite;
+            transform: rotate(15deg);
         }
 
         .course-badge svg {
-            width: 14px;
-            height: 14px;
+            display: none;
         }
 
         .badge-value {
@@ -888,11 +892,11 @@
 
             0%,
             100% {
-                transform: translateY(0);
+                transform: translateY(0) rotate(15deg);
             }
 
             50% {
-                transform: translateY(-4px);
+                transform: translateY(-4px) rotate(12deg);
             }
         }
 
