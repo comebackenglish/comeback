@@ -2049,14 +2049,22 @@
         @media (max-width: 600px) {
             .floating-nav {
                 bottom: 1.5rem;
-                width: 90vw;
+                width: calc(100% - 2rem);
+                max-width: 400px;
                 justify-content: center;
                 padding: 4px;
             }
 
+            .nav-pill-container {
+                width: 100%;
+                gap: 2px;
+            }
+
             .nav-tab {
-                font-size: 0.8rem;
-                padding: 8px 14px;
+                font-size: clamp(0.7rem, 3vw, 0.8rem);
+                padding: 8px 0;
+                flex: 1 1 0px;
+                text-align: center;
             }
         }
 
@@ -2627,27 +2635,49 @@
             const feedbackContainer = document.querySelector('.feedback-columns');
 
             if (prevScrollBtn && nextScrollBtn && feedbackContainer) {
+                let arrowState = ''; // Track state: 'start', 'middle', 'end' to prevent duplicate DOM writes
+                let maxScroll = feedbackContainer.scrollWidth - feedbackContainer.clientWidth;
+
                 const updateArrowVisibility = () => {
                     const scrollLeft = feedbackContainer.scrollLeft;
-                    const maxScroll = feedbackContainer.scrollWidth - feedbackContainer.clientWidth;
-
-                    // Show/hide prev button
+                    let newState = 'middle';
+                    
                     if (scrollLeft <= 5) {
+                        newState = 'start';
+                    } else if (scrollLeft >= maxScroll - 5) {
+                        newState = 'end';
+                    }
+
+                    if (newState === arrowState) return; // Skip DOM writes if state hasn't changed
+                    arrowState = newState;
+
+                    if (arrowState === 'start') {
                         prevScrollBtn.style.opacity = '0';
                         prevScrollBtn.style.pointerEvents = 'none';
+                        prevScrollBtn.style.visibility = 'hidden';
+                        nextScrollBtn.style.opacity = '1';
+                        nextScrollBtn.style.pointerEvents = 'all';
+                        nextScrollBtn.style.visibility = 'visible';
+                    } else if (arrowState === 'end') {
+                        prevScrollBtn.style.opacity = '1';
+                        prevScrollBtn.style.pointerEvents = 'all';
+                        prevScrollBtn.style.visibility = 'visible';
+                        nextScrollBtn.style.opacity = '0';
+                        nextScrollBtn.style.pointerEvents = 'none';
+                        nextScrollBtn.style.visibility = 'hidden';
                     } else {
                         prevScrollBtn.style.opacity = '1';
                         prevScrollBtn.style.pointerEvents = 'all';
-                    }
-
-                    // Show/hide next button
-                    if (scrollLeft >= maxScroll - 5) {
-                        nextScrollBtn.style.opacity = '0';
-                        nextScrollBtn.style.pointerEvents = 'none';
-                    } else {
+                        prevScrollBtn.style.visibility = 'visible';
                         nextScrollBtn.style.opacity = '1';
                         nextScrollBtn.style.pointerEvents = 'all';
+                        nextScrollBtn.style.visibility = 'visible';
                     }
+                };
+
+                const handleResize = () => {
+                    maxScroll = feedbackContainer.scrollWidth - feedbackContainer.clientWidth;
+                    updateArrowVisibility();
                 };
 
                 // Scroll action for arrows
@@ -2684,7 +2714,7 @@
                 nextScrollBtn.addEventListener('click', removePulse);
 
                 // Handle resize changes to visibility
-                window.addEventListener('resize', updateArrowVisibility);
+                window.addEventListener('resize', handleResize);
             }
 
             // 5. Floating Nav Active Tab and Indicator Logic
@@ -2692,13 +2722,37 @@
             const tabs = document.querySelectorAll('.nav-tab');
             const indicator = document.querySelector('.nav-indicator');
 
+            // Cache DOM section targets once to prevent layout thrashing and DOM querying on scroll
+            const sectionHero = document.querySelector('.header-wrapper');
+            const sectionFeedback = document.getElementById('students-love');
+            const sectionCourses = document.querySelector('.premium-white-section');
+            const sectionResources = document.querySelector('.bottom-grid');
+
+            // Cache section offsets on load and resize
+            let offsetFeedback = 0;
+            let offsetCourses = 0;
+            let offsetResources = 0;
+
+            const updateSectionOffsets = () => {
+                if (sectionFeedback) offsetFeedback = sectionFeedback.offsetTop;
+                if (sectionCourses) offsetCourses = sectionCourses.offsetTop;
+                if (sectionResources) offsetResources = sectionResources.offsetTop;
+            };
+            updateSectionOffsets();
+
             const moveIndicator = (activeTab) => {
                 if (!activeTab || !indicator) return;
+                // Reading layout values is now only done when tab actually changes, not on scroll
                 indicator.style.width = `${activeTab.offsetWidth}px`;
                 indicator.style.left = `${activeTab.offsetLeft}px`;
             };
 
+            let lastActiveSection = 'hero';
+
             const setActiveTab = (targetId) => {
+                if (targetId === lastActiveSection) return; // Prevent DOM writes and layout queries if state is unchanged
+                lastActiveSection = targetId;
+
                 tabs.forEach(tab => {
                     if (tab.getAttribute('data-target') === targetId) {
                         tab.classList.add('active');
@@ -2719,15 +2773,15 @@
                     if (targetId === 'hero') {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     } else if (targetId === 'students-love') {
-                        targetSection = document.getElementById('students-love');
+                        targetSection = sectionFeedback;
                     } else if (targetId === 'courses') {
-                        targetSection = document.querySelector('.premium-white-section');
+                        targetSection = sectionCourses;
                     } else if (targetId === 'resources') {
-                        targetSection = document.querySelector('.bottom-grid');
+                        targetSection = sectionResources;
                     }
 
                     if (targetSection) {
-                        const yOffset = -20; // Slight offset so it's not tucked right under header
+                        const yOffset = -20;
                         const y = targetSection.getBoundingClientRect().top + window.scrollY + yOffset;
                         window.scrollTo({ top: y, behavior: 'smooth' });
                     }
@@ -2736,36 +2790,8 @@
                 });
             });
 
-            // Scroll Spy to set active tab dynamically
-            const scrollSpy = () => {
-                const scrollPos = window.scrollY + window.innerHeight / 3;
-
-                // Check Hero
-                let currentSection = 'hero';
-
-                // Check Feedback
-                const feedbackSection = document.getElementById('students-love');
-                if (feedbackSection && scrollPos >= feedbackSection.offsetTop) {
-                    currentSection = 'students-love';
-                }
-
-                // Check Courses
-                const coursesSection = document.querySelector('.premium-white-section');
-                if (coursesSection && scrollPos >= coursesSection.offsetTop) {
-                    currentSection = 'courses';
-                }
-
-                // Check Resources
-                const resourcesSection = document.querySelector('.bottom-grid');
-                if (resourcesSection && scrollPos >= resourcesSection.offsetTop - 100) {
-                    currentSection = 'resources';
-                }
-
-                setActiveTab(currentSection);
-            };
-
-            window.addEventListener('scroll', scrollSpy, { passive: true });
             window.addEventListener('resize', () => {
+                updateSectionOffsets();
                 const activeTab = document.querySelector('.nav-tab.active');
                 if (activeTab) moveIndicator(activeTab);
             });
@@ -2901,7 +2927,8 @@
                 lastTime = timestamp;
 
                 ctx.clearRect(0, 0, width, height);
-                updateOrigin();
+                // REMOVED updateOrigin() call here which ran getBoundingClientRect() twice per frame, causing massive layout thrashing.
+                // Origin is now computed dynamically only on load and on resize.
 
                 particles.forEach(p => {
                     p.update();
