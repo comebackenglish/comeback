@@ -711,6 +711,26 @@
 
         .premium-white-section .premium-title {
             color: var(--brand-black);
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .premium-white-section .premium-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--brand-pink);
+            border-radius: 2px;
         }
 
         .premium-white-section .scroll-indicator {
@@ -1006,6 +1026,74 @@
             font-family: var(--font-display);
             font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 700;
+        }
+
+        /* Pricing in three layers */
+        .price-three-layers {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .price-layer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .price-layer .price-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .price-layer.regular {
+            opacity: 0.6;
+        }
+
+        .price-layer.regular .price-value {
+            text-decoration: line-through;
+            font-size: 0.95rem;
+        }
+
+        .price-layer.current {
+            opacity: 0.6;
+        }
+
+        .price-layer.current .price-value {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-decoration: line-through;
+        }
+
+        .price-layer.comeback {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.4rem 0.6rem;
+            border-radius: var(--radius-sm);
+            margin-top: 0.2rem;
+            border: 1px dashed rgba(255, 255, 255, 0.35);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-layer.comeback .price-label {
+            opacity: 1;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .price-layer.comeback .price-value {
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #fff;
         }
 
         .course-dl-btn {
@@ -1537,6 +1625,445 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* --- Feedback Section (Students' Love) --- */
+        .feedback-section {
+            padding: 2.5rem 1.5rem;
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .feedback-title-container {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .feedback-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            color: var(--brand-pink);
+            text-shadow: 0 0 30px rgba(230, 0, 126, 0.4);
+            text-transform: uppercase;
+        }
+
+        .feedback-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        /* Feedback Slider Wrapper */
+        .feedback-slider-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .feedback-scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 50%;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s var(--ease-smooth);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            padding: 0;
+        }
+
+        .feedback-scroll-btn:hover {
+            background: var(--brand-pink);
+            border-color: transparent;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 20px rgba(230, 0, 126, 0.6);
+        }
+
+        .feedback-scroll-btn.prev {
+            left: -1rem;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .feedback-scroll-btn.next {
+            right: -1rem;
+        }
+
+        @keyframes arrow-pulse {
+            0%, 100% {
+                transform: translateY(-50%) scale(1);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            }
+            50% {
+                transform: translateY(-50%) scale(1.12);
+                box-shadow: 0 0 20px 5px rgba(230, 0, 126, 0.4);
+                background: rgba(230, 0, 126, 0.15);
+                border-color: rgba(230, 0, 126, 0.5);
+            }
+        }
+
+        .feedback-scroll-btn.next.pulse {
+            animation: arrow-pulse 2s infinite ease-in-out;
+        }
+
+        .feedback-scroll-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        @media (max-width: 768px) {
+            .feedback-scroll-btn {
+                width: 40px;
+                height: 40px;
+            }
+            .feedback-scroll-btn.prev {
+                left: -0.5rem;
+            }
+            .feedback-scroll-btn.next {
+                right: -0.5rem;
+            }
+        }
+
+        /* Horizontal Scroll Layout */
+        .feedback-columns {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            width: 100%;
+            padding: 0.5rem 0.25rem 1.5rem;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            align-items: flex-start;
+        }
+
+        /* Custom Scrollbar for Feedback Container */
+        .feedback-columns::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .feedback-columns::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 100px;
+        }
+
+        .feedback-columns::-webkit-scrollbar-thumb {
+            background: rgba(230, 0, 126, 0.2);
+            border-radius: 100px;
+            transition: background 0.3s;
+        }
+
+        .feedback-columns::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-pink);
+        }
+
+        .feedback-card {
+            flex: 0 0 80%;
+            max-width: 320px;
+            scroll-snap-align: center;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s var(--ease-spring), border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        @media (min-width: 600px) {
+            .feedback-card {
+                flex: 0 0 calc((100% - 1.5rem) / 2);
+                max-width: none;
+                scroll-snap-align: start;
+            }
+        }
+
+        @media (min-width: 968px) {
+            .feedback-card {
+                flex: 0 0 calc((100% - 3rem) / 3);
+                max-width: none;
+                scroll-snap-align: start;
+            }
+        }
+
+        .feedback-card:hover {
+            border-color: rgba(230, 0, 126, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(230, 0, 126, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .feedback-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: calc(var(--radius-lg) - 1px);
+            transition: transform 0.5s var(--ease-spring), filter 0.5s ease;
+            filter: brightness(0.95);
+        }
+
+        .feedback-card:hover .feedback-img {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background-color: rgba(5, 5, 7, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 1.5rem;
+        }
+
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content-wrapper {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: var(--radius-lg);
+            display: block;
+            transform: scale(0.95);
+            transition: transform 0.4s var(--ease-spring);
+        }
+
+        .lightbox-modal.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        /* Lightbox UI Buttons */
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--ease-smooth);
+            z-index: 10;
+        }
+
+        .lightbox-close:hover {
+            background: var(--brand-pink);
+            border-color: transparent;
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 20px rgba(230, 0, 126, 0.6);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--ease-smooth);
+            z-index: 10;
+        }
+
+        .lightbox-nav svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--brand-pink);
+            border-color: transparent;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 20px rgba(230, 0, 126, 0.6);
+        }
+
+        .lightbox-prev {
+            left: 2rem;
+        }
+
+        .lightbox-next {
+            right: 2rem;
+        }
+
+        /* Hide navigation on small devices where swipe or tap is preferred */
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                width: 44px;
+                height: 44px;
+            }
+            .lightbox-prev {
+                left: 0.5rem;
+            }
+            .lightbox-next {
+                right: 0.5rem;
+            }
+            .lightbox-close {
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Floating Navigation Bar */
+        .floating-nav {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            background: rgba(10, 10, 15, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+            padding: 6px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translate(-50%, 30px);
+            animation: nav-fade-in 1s var(--ease-spring) 0.5s forwards;
+        }
+
+        @keyframes nav-fade-in {
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .nav-pill-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-tab {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 100px;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            color: #fff;
+        }
+
+        .nav-tab.active {
+            color: #050507 !important;
+        }
+
+        .nav-indicator {
+            position: absolute;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 100px;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 600px) {
+            .floating-nav {
+                bottom: 1.5rem;
+                width: 90vw;
+                justify-content: center;
+                padding: 4px;
+            }
+
+            .nav-tab {
+                font-size: 0.8rem;
+                padding: 8px 14px;
+            }
+        }
+
+        /* Space at the bottom of the site for nav bar visibility */
+        body {
+            padding-bottom: 8rem !important;
+        }
     </style>
 </head>
 
@@ -1629,7 +2156,54 @@
 
         </div>
 
+        <!-- Students' Love Section -->
+        <section id="students-love" class="feedback-section reveal delay-1">
+            <div class="feedback-title-container">
+                <h2 class="feedback-title">Students' Love</h2>
+                <p class="feedback-subtitle">Real feedback from our successful students</p>
+            </div>
+            <div class="feedback-slider-wrapper">
+                <button id="feedbackPrevBtn" class="feedback-scroll-btn prev" aria-label="Scroll left">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="feedback-columns">
+                    <div class="feedback-card" data-index="0">
+                        <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1780636588/w6d4rjdoaunnzisiggla.png" alt="Student feedback" class="feedback-img" loading="lazy">
+                    </div>
+                    <div class="feedback-card" data-index="1">
+                        <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1780636589/sqpfpqcposu1wc3ywjrl.png" alt="Student feedback" class="feedback-img" loading="lazy">
+                    </div>
+                    <div class="feedback-card" data-index="2">
+                        <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1780636596/ktzyaz7imm8aysxtcavj.png" alt="Student feedback" class="feedback-img" loading="lazy">
+                    </div>
+                    <div class="feedback-card" data-index="3">
+                        <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1780636591/lqlui3swp2h5azijahtp.png" alt="Student feedback" class="feedback-img" loading="lazy">
+                    </div>
+                    <div class="feedback-card" data-index="4">
+                        <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1780636590/k4uzpbrm0rygdcecz4zx.png" alt="Student feedback" class="feedback-img" loading="lazy">
+                    </div>
+                    <div class="feedback-card" data-index="5">
+                        <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1780636590/xl3dbkt9z2m5a0kmefcq.png" alt="Student feedback" class="feedback-img" loading="lazy">
+                    </div>
+                    <div class="feedback-card" data-index="6">
+                        <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1780636589/clolkhk2pcbbnpsxxa3d.png" alt="Student feedback" class="feedback-img" loading="lazy">
+                    </div>
+                    <div class="feedback-card" data-index="7">
+                        <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1780636588/bzytlj2fbev0i4ouzyhi.png" alt="Student feedback" class="feedback-img" loading="lazy">
+                    </div>
+                </div>
+                <button id="feedbackNextBtn" class="feedback-scroll-btn next pulse" aria-label="Scroll right">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
         <section class="premium-white-section">
+            <h2 class="premium-title reveal delay-1">Premium courses</h2>
             <div class="courses-panel reveal delay-1">
                 <div class="course-card pink">
                     <div class="course-badge badge-value">
@@ -1681,9 +2255,19 @@
                         class="course-dl-btn ripple-btn">
                         Start Learning
                     </a>
-                    <div class="course-price-wrap">
-                        <span class="price-old">৳14000</span>
-                        <span class="price-new">৳6999</span>
+                    <div class="price-three-layers">
+                        <div class="price-layer regular">
+                            <span class="price-label">Regular Price</span>
+                            <span class="price-value price-old">৳14,000</span>
+                        </div>
+                        <div class="price-layer current">
+                            <span class="price-label">Current Offer</span>
+                            <span class="price-value price-new">৳6,999</span>
+                        </div>
+                        <div class="price-layer comeback">
+                            <span class="price-label">Comeback Offer</span>
+                            <span class="price-value price-comeback">৳4,999</span>
+                        </div>
                     </div>
                 </div>
                 <div class="course-card blue">
@@ -1962,6 +2546,235 @@
                     });
                 });
             }
+
+            // 3. Lightbox Gallery Logic
+            const lightbox = document.getElementById('lightboxModal');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+            const prevBtn = lightbox.querySelector('.lightbox-prev');
+            const nextBtn = lightbox.querySelector('.lightbox-next');
+            const feedbackCards = document.querySelectorAll('.feedback-card');
+            
+            const feedbackImages = Array.from(feedbackCards).map(card => card.querySelector('img').src);
+            let currentImageIndex = 0;
+
+            const openLightbox = (index) => {
+                currentImageIndex = index;
+                lightboxImg.src = feedbackImages[currentImageIndex];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Lock background scrolling
+            };
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore background scrolling
+                setTimeout(() => {
+                    lightboxImg.src = ''; // Clear source after animation to prevent flashing next time
+                }, 300);
+            };
+
+            const showNext = (e) => {
+                e.stopPropagation();
+                currentImageIndex = (currentImageIndex + 1) % feedbackImages.length;
+                lightboxImg.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    lightboxImg.src = feedbackImages[currentImageIndex];
+                    lightboxImg.style.transform = 'scale(1)';
+                }, 100);
+            };
+
+            const showPrev = (e) => {
+                e.stopPropagation();
+                currentImageIndex = (currentImageIndex - 1 + feedbackImages.length) % feedbackImages.length;
+                lightboxImg.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    lightboxImg.src = feedbackImages[currentImageIndex];
+                    lightboxImg.style.transform = 'scale(1)';
+                }, 100);
+            };
+
+            feedbackCards.forEach((card, index) => {
+                card.addEventListener('click', () => openLightbox(index));
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+            prevBtn.addEventListener('click', showPrev);
+            nextBtn.addEventListener('click', showNext);
+
+            // Close when clicking backdrop
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
+                    closeLightbox();
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowRight') {
+                    showNext(e);
+                } else if (e.key === 'ArrowLeft') {
+                    showPrev(e);
+                }
+            });
+
+            // 4. Feedback Slider Horizontal Scroll Navigation
+            const prevScrollBtn = document.getElementById('feedbackPrevBtn');
+            const nextScrollBtn = document.getElementById('feedbackNextBtn');
+            const feedbackContainer = document.querySelector('.feedback-columns');
+
+            if (prevScrollBtn && nextScrollBtn && feedbackContainer) {
+                const updateArrowVisibility = () => {
+                    const scrollLeft = feedbackContainer.scrollLeft;
+                    const maxScroll = feedbackContainer.scrollWidth - feedbackContainer.clientWidth;
+
+                    // Show/hide prev button
+                    if (scrollLeft <= 5) {
+                        prevScrollBtn.style.opacity = '0';
+                        prevScrollBtn.style.pointerEvents = 'none';
+                    } else {
+                        prevScrollBtn.style.opacity = '1';
+                        prevScrollBtn.style.pointerEvents = 'all';
+                    }
+
+                    // Show/hide next button
+                    if (scrollLeft >= maxScroll - 5) {
+                        nextScrollBtn.style.opacity = '0';
+                        nextScrollBtn.style.pointerEvents = 'none';
+                    } else {
+                        nextScrollBtn.style.opacity = '1';
+                        nextScrollBtn.style.pointerEvents = 'all';
+                    }
+                };
+
+                // Scroll action for arrows
+                prevScrollBtn.addEventListener('click', () => {
+                    const firstCard = feedbackContainer.querySelector('.feedback-card');
+                    if (firstCard) {
+                        const cardWidth = firstCard.offsetWidth;
+                        const gap = 24; // 1.5rem gap
+                        feedbackContainer.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
+                    }
+                });
+
+                nextScrollBtn.addEventListener('click', () => {
+                    const firstCard = feedbackContainer.querySelector('.feedback-card');
+                    if (firstCard) {
+                        const cardWidth = firstCard.offsetWidth;
+                        const gap = 24; // 1.5rem gap
+                        feedbackContainer.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+                    }
+                });
+
+                feedbackContainer.addEventListener('scroll', updateArrowVisibility, { passive: true });
+                
+                // Initial call to set visibility
+                updateArrowVisibility();
+
+                // Remove pulse animation on interaction
+                const removePulse = () => {
+                    nextScrollBtn.classList.remove('pulse');
+                    feedbackContainer.removeEventListener('scroll', removePulse);
+                    nextScrollBtn.removeEventListener('click', removePulse);
+                };
+                feedbackContainer.addEventListener('scroll', removePulse, { passive: true });
+                nextScrollBtn.addEventListener('click', removePulse);
+
+                // Handle resize changes to visibility
+                window.addEventListener('resize', updateArrowVisibility);
+            }
+
+            // 5. Floating Nav Active Tab and Indicator Logic
+            const nav = document.querySelector('.floating-nav');
+            const tabs = document.querySelectorAll('.nav-tab');
+            const indicator = document.querySelector('.nav-indicator');
+
+            const moveIndicator = (activeTab) => {
+                if (!activeTab || !indicator) return;
+                indicator.style.width = `${activeTab.offsetWidth}px`;
+                indicator.style.left = `${activeTab.offsetLeft}px`;
+            };
+
+            const setActiveTab = (targetId) => {
+                tabs.forEach(tab => {
+                    if (tab.getAttribute('data-target') === targetId) {
+                        tab.classList.add('active');
+                        moveIndicator(tab);
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+            };
+
+            // Click Scroll Event
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = tab.getAttribute('data-target');
+                    let targetSection;
+                    
+                    if (targetId === 'hero') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else if (targetId === 'students-love') {
+                        targetSection = document.getElementById('students-love');
+                    } else if (targetId === 'courses') {
+                        targetSection = document.querySelector('.premium-white-section');
+                    } else if (targetId === 'resources') {
+                        targetSection = document.querySelector('.bottom-grid');
+                    }
+
+                    if (targetSection) {
+                        const yOffset = -20; // Slight offset so it's not tucked right under header
+                        const y = targetSection.getBoundingClientRect().top + window.scrollY + yOffset;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                    
+                    setActiveTab(targetId);
+                });
+            });
+
+            // Scroll Spy to set active tab dynamically
+            const scrollSpy = () => {
+                const scrollPos = window.scrollY + window.innerHeight / 3;
+
+                // Check Hero
+                let currentSection = 'hero';
+
+                // Check Feedback
+                const feedbackSection = document.getElementById('students-love');
+                if (feedbackSection && scrollPos >= feedbackSection.offsetTop) {
+                    currentSection = 'students-love';
+                }
+
+                // Check Courses
+                const coursesSection = document.querySelector('.premium-white-section');
+                if (coursesSection && scrollPos >= coursesSection.offsetTop) {
+                    currentSection = 'courses';
+                }
+
+                // Check Resources
+                const resourcesSection = document.querySelector('.bottom-grid');
+                if (resourcesSection && scrollPos >= resourcesSection.offsetTop - 100) {
+                    currentSection = 'resources';
+                }
+
+                setActiveTab(currentSection);
+            };
+
+            window.addEventListener('scroll', scrollSpy, { passive: true });
+            window.addEventListener('resize', () => {
+                const activeTab = document.querySelector('.nav-tab.active');
+                if (activeTab) moveIndicator(activeTab);
+            });
+
+            // Initial alignment
+            setTimeout(() => {
+                const activeTab = document.querySelector('.nav-tab.active');
+                if (activeTab) moveIndicator(activeTab);
+            }, 300);
         });
     </script>
 
@@ -2111,6 +2924,35 @@
             window.addEventListener('load', resizeCanvasSync);
         })();
     </script>
+
+    <!-- Lightbox Modal Markup -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <div class="lightbox-content-wrapper">
+            <img src="" alt="Zoomed student feedback" class="lightbox-img" id="lightboxImg">
+        </div>
+        <button class="lightbox-nav lightbox-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Floating Navigation Bar -->
+    <nav class="floating-nav">
+        <div class="nav-pill-container">
+            <div class="nav-indicator"></div>
+            <a href="#hero" class="nav-tab active" data-target="hero">comeback</a>
+            <a href="#students-love" class="nav-tab" data-target="students-love">feedback</a>
+            <a href="#courses" class="nav-tab" data-target="courses">courses</a>
+            <a href="#resources" class="nav-tab" data-target="resources">resources</a>
+        </div>
+    </nav>
 </body>
 
 </html>
