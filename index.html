@@ -2072,6 +2072,128 @@
         body {
             padding-bottom: 8rem !important;
         }
+
+        /* Combo Offer Promo Box */
+        .combo-promo-box {
+            position: relative;
+            margin-top: 2.5rem;
+            padding: 2.25rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(253, 244, 245, 0.98) 100%);
+            border-radius: var(--radius-xl);
+            border: 2px dashed rgba(230, 0, 126, 0.25);
+            box-shadow: 0 15px 35px rgba(230, 0, 126, 0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 1rem;
+            transition: all 0.4s var(--ease-spring);
+            overflow: hidden;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .combo-promo-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(230, 0, 126, 0.05), transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .combo-promo-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-pink);
+            box-shadow: 0 25px 45px rgba(230, 0, 126, 0.12);
+        }
+
+        .combo-badge {
+            background: linear-gradient(135deg, var(--brand-pink) 0%, #ff8e00 100%);
+            color: #ffffff;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0px;
+            box-shadow: 0 4px 15px rgba(230, 0, 126, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: combo-pulse 2s infinite alternate;
+        }
+
+        @keyframes combo-pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(230, 0, 126, 0.25);
+            }
+            100% {
+                transform: scale(1.04);
+                box-shadow: 0 6px 20px rgba(230, 0, 126, 0.4);
+            }
+        }
+
+        .combo-courses-badges {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0.5rem 0;
+        }
+
+        .combo-course-badge {
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: transform 0.3s ease;
+        }
+
+        .combo-course-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .combo-course-badge.badge-blue {
+            background: linear-gradient(135deg, #1877F2 0%, #0a4b9e 100%);
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.25);
+        }
+
+        .combo-course-badge.badge-black {
+            background: linear-gradient(135deg, #1c1c1e 0%, #000000 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .combo-course-badge.badge-orange {
+            background: linear-gradient(135deg, #ff8e00 0%, #e65c00 100%);
+            box-shadow: 0 4px 12px rgba(255, 142, 0, 0.25);
+        }
+
+        .combo-offer-text {
+            font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+            color: #2b2b2e;
+            font-weight: 600;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .combo-offer-text strong {
+            color: var(--brand-pink);
+            font-weight: 800;
+            font-size: 1.1em;
+            background: linear-gradient(120deg, rgba(230, 0, 126, 0.1) 0%, rgba(230, 0, 126, 0.05) 100%);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
@@ -2279,34 +2401,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="course-card blue">
-                    <div class="course-badge badge-popular">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                        </svg>
-                        2 IN 1 COMBO
-                    </div>
-                    <h3 class="course-title">IELTS Reading + Writing</h3>
-                    <p class="course-subtitle">
-                 একেবারে Pro হয়ে যাবেন। একেক ক্লাসে রীতিমতো পোস্টমর্টেম হবে, আর এমনভাবে হবে যে আপনি না শিখতে চাইলেও আমি শিখিয়ে ছাড়বো।
-                    </p>
-                    <ul class="course-features">
-                    
-                          <li>18 Workshops</li>
-                             <li>2.5 hours/workshop</li>
-                          <li>18 Pratice Classes</li>
-                             <li>Total 36 sessions</li>
-                                <li>1.5 months</li>
-                    </ul>
-                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                        class="course-dl-btn ripple-btn">
-                        Start Learning
-                    </a>
-                    <div class="course-price-wrap">
-                        <span class="price-old">৳12000</span>
-                        <span class="price-new">৳4500</span>
-                    </div>
-                </div>
                 <div class="course-card orange">
                     <h3 class="course-title">SPEAKING for IELTS</h3>
                     <p class="course-subtitle">
@@ -2327,7 +2421,7 @@
                         <span class="price-new">৳2999</span>
                     </div>
                 </div>
-                <div class="course-card black">
+                <div class="course-card blue">
                     <h3 class="course-title">READING for IELTS</h3>
                     <p class="course-subtitle">
                         Solve the trickiest questions, read faster, and find answers quicker.
@@ -2367,6 +2461,24 @@
                         <span class="price-new">৳2999</span>
                     </div>
                 </div>
+            </div>
+
+            <!-- Combo Offer Promo Box -->
+            <div class="combo-promo-box reveal delay-2">
+                <div class="combo-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    Comeback Offer
+                </div>
+                <div class="combo-courses-badges">
+                    <span class="combo-course-badge badge-blue">Reading for IELTS</span>
+                    <span class="combo-course-badge badge-black">Writing for IELTS</span>
+                    <span class="combo-course-badge badge-orange">Speaking for IELTS</span>
+                </div>
+                <p class="combo-offer-text">
+                    এই তিনটা কোর্সের যে কোনো দুইটা কিনলে <strong>১৫০০ টাকা</strong> ছাড়, আর তিনটা কিনলে <strong>৩ হাজার টাকা</strong> ছাড়!
+                </p>
             </div>
         </section>
         <!-- Bottom Sections -->
