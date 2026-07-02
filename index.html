@@ -189,11 +189,44 @@
 
         /* --- Header --- */
         .header-wrapper {
-            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1024px;
+            margin-bottom: 2.5rem;
             position: relative;
-            z-index: 10;
+            z-index: 100;
             opacity: 0;
             animation: fade-down 0.8s var(--ease-smooth) forwards;
+            padding: 0.5rem 1rem;
+        }
+
+        .header-yt-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            color: #ff3333;
+            border-radius: 100px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--ease-spring);
+        }
+        .header-yt-btn:hover {
+            background: #ff0000;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        .header-yt-btn svg {
+            fill: currentColor;
+            display: block;
         }
 
         .brand-container {
@@ -201,30 +234,312 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 0.5rem 2rem;
+            padding: 0.5rem;
         }
 
         .brand-text {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
             font-weight: 700;
             letter-spacing: -0.04em;
             color: var(--brand-pink);
             text-shadow: 0 0 30px rgba(230, 0, 126, 0.4);
         }
 
-        .brand-motto {
+        .header-batches-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-dark-pink) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 100px;
+            cursor: pointer;
             font-family: var(--font-display);
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-weight: 500;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(230, 0, 126, 0.25);
+            transition: all 0.3s var(--ease-spring);
+        }
+        .header-batches-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(230, 0, 126, 0.45);
+        }
+        .header-batches-btn svg {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .header-wrapper {
+                margin-bottom: 1.5rem;
+                padding: 0.5rem 0.2rem;
+            }
+            .header-yt-btn {
+                padding: 0.6rem;
+            }
+            .header-yt-btn .btn-text {
+                display: none;
+            }
+            .header-batches-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* --- Bento Course Grid --- */
+        .courses-bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            width: 100%;
+        }
+
+        .bento-course-card {
+            border-radius: var(--radius-xl);
+            padding: 2.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            margin-top: -1.5rem;
-            margin-bottom: 2rem;
+            min-height: 140px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s var(--ease-spring), border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .bento-course-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bento-course-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .bento-course-card.pink { background: linear-gradient(135deg, rgba(230, 0, 126, 0.95) 0%, rgba(194, 0, 106, 0.98) 100%); }
+        .bento-course-card.red { background: linear-gradient(135deg, #e31b23 0%, #990011 100%); }
+        .bento-course-card.orange { background: linear-gradient(135deg, #ff8e00 0%, #e65c00 100%); }
+        .bento-course-card.blue { background: linear-gradient(135deg, #1877F2 0%, #0a4b9e 100%); }
+        .bento-course-card.black { background: linear-gradient(135deg, rgba(28, 28, 30, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%); }
+        .bento-course-card.green { background: linear-gradient(135deg, #00b050 0%, #007020 100%); }
+
+        .bento-course-card.pink:hover { box-shadow: 0 20px 40px rgba(230, 0, 126, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.2); }
+        .bento-course-card.red:hover { box-shadow: 0 20px 40px rgba(227, 27, 35, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.2); }
+        .bento-course-card.orange:hover { box-shadow: 0 20px 40px rgba(255, 142, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.2); }
+        .bento-course-card.blue:hover { box-shadow: 0 20px 40px rgba(24, 119, 242, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.2); }
+        .bento-course-card.black:hover { box-shadow: 0 20px 40px rgba(255, 255, 255, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.1); }
+        .bento-course-card.green:hover { box-shadow: 0 20px 40px rgba(0, 176, 80, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.2); }
+
+        .bento-course-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+            z-index: 2;
+        }
+
+        .bento-card-action {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease, transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .bento-course-card:hover .bento-card-action {
+            color: #fff;
+            transform: translateX(4px);
+        }
+
+        .bento-course-card.span-full { grid-column: span 2; }
+        .bento-course-card.span-half { grid-column: span 1; }
+
+        @media (min-width: 768px) {
+            .courses-bento-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 1.5rem;
+            }
+            .bento-course-card.spoken-card { grid-column: span 2; min-height: 160px; }
+            .bento-course-card.complete-card { grid-column: span 4; min-height: 160px; }
+            .bento-course-card.speaking-card { grid-column: span 3; min-height: 160px; }
+            .bento-course-card.reading-card { grid-column: span 3; min-height: 160px; }
+            .bento-course-card.writing-card { grid-column: span 3; min-height: 160px; }
+            .bento-course-card.basic-card { grid-column: span 3; min-height: 160px; }
+        }
+
+        /* --- Upcoming Batches Modal & Table --- */
+        .batches-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background-color: rgba(5, 5, 7, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             opacity: 0;
-            animation: fade-up 0.8s var(--ease-smooth) 0.1s forwards;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 1rem;
+        }
+        .batches-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .batches-modal-content {
+            background: linear-gradient(145deg, rgba(20, 20, 25, 0.95) 0%, rgba(10, 10, 15, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            max-width: 650px;
+            width: 100%;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.4s var(--ease-spring);
+            padding: 2.25rem 2rem;
+            position: relative;
+        }
+        .batches-modal.active .batches-modal-content {
+            transform: scale(1) translateY(0);
+        }
+        .batches-modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .batches-modal-close:hover {
+            background: var(--brand-pink);
+            border-color: transparent;
+            transform: rotate(90deg);
+        }
+        .batches-modal-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(to right, #fff, #ff8e00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .batches-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .batches-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        .batches-table th {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .batches-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-weight: 500;
+        }
+        .batches-table tr:last-child td {
+            border-bottom: none;
+        }
+        .batches-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .batch-course-name {
+            color: #fff;
+            font-weight: 700;
+        }
+        .batch-date-col {
+            color: #ff8e00;
+            font-weight: 600;
+        }
+        .batch-time-col {
+            color: var(--text-secondary);
+        }
+        .batches-modal-footer {
+            margin-top: 1.75rem;
+            text-align: center;
+        }
+        .batches-modal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #ff8e00 0%, #e65c00 100%);
+            border: none;
+            color: #fff;
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            border-radius: 100px;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(255, 142, 0, 0.25);
+            transition: all 0.3s var(--ease-spring);
+        }
+        .batches-modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255, 142, 0, 0.45);
+        }
+
+        @media (max-width: 600px) {
+            .batches-modal-content {
+                padding: 1.75rem 1rem;
+            }
+            .batches-modal-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+            .batches-table th, .batches-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.8rem;
+            }
         }
 
         /* --- Main Layout --- */
@@ -550,9 +865,12 @@
 
         .stat-value {
             font-family: var(--font-display);
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: #fff;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             line-height: 1;
             margin-bottom: 0.25rem;
         }
@@ -700,13 +1018,19 @@
 
         /* --- Premium White Section --- */
         .premium-white-section {
-            background-color: #fbfbfd;
+            background-color: #ffffff;
             border-radius: var(--radius-xl);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            padding: 2.5rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            padding: 3rem 2rem;
             margin-top: 0.5rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05), 0 4px 16px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
             transition: box-shadow 0.6s ease;
+        }
+
+        @media (max-width: 600px) {
+            .premium-white-section {
+                padding: 2rem 1rem;
+            }
         }
 
         .premium-white-section .premium-title {
@@ -842,10 +1166,42 @@
             opacity: 0.35;
         }
 
+        .course-card {
+            transition: transform 0.5s var(--ease-spring), border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
         .course-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-8px) scale(1.015);
+        }
+
+        .course-card.pink:hover {
+            border-color: rgba(230, 0, 126, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(230, 0, 126, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .course-card.red:hover {
+            border-color: rgba(227, 27, 35, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(227, 27, 35, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .course-card.black:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .course-card.blue:hover {
+            border-color: rgba(24, 119, 242, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(24, 119, 242, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .course-card.orange:hover {
+            border-color: rgba(255, 142, 0, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 142, 0, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .course-card.green:hover {
+            border-color: rgba(0, 176, 80, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 176, 80, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
         }
 
         .course-card.pink {
@@ -876,6 +1232,12 @@
             background: linear-gradient(135deg, #ff8e00 0%, #e65c00 100%);
             color: #fff;
             box-shadow: 0 10px 30px rgba(255, 142, 0, 0.15);
+        }
+
+        .course-card.green {
+            background: linear-gradient(135deg, #00b050 0%, #007020 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 176, 80, 0.15);
         }
 
         .course-badge {
@@ -939,6 +1301,10 @@
 
         .course-card.red .course-badge {
             color: #e31b23 !important;
+        }
+
+        .course-card.green .course-badge {
+            color: #00b050 !important;
         }
 
         @keyframes badge-float {
@@ -1137,6 +1503,13 @@
 
         .course-card.red .course-dl-btn:hover {
             color: #990011;
+        }
+
+        .course-card.green .course-dl-btn {
+            color: #00b050;
+        }
+        .course-card.green .course-dl-btn:hover {
+            color: #007020;
         }
 
         .course-dl-btn.btn-blue {
@@ -1982,18 +2355,24 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 9999;
-            background: rgba(10, 10, 15, 0.75);
+            background: rgba(10, 10, 15, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 100px;
             padding: 6px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             opacity: 0;
             transform: translate(-50%, 30px);
             animation: nav-fade-in 1s var(--ease-spring) 0.5s forwards;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .floating-nav:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.65), 0 0 20px rgba(230, 0, 126, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
         }
 
         @keyframes nav-fade-in {
@@ -2080,8 +2459,8 @@
             padding: 2.25rem 2rem;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(253, 244, 245, 0.98) 100%);
             border-radius: var(--radius-xl);
-            border: 2px dashed rgba(230, 0, 126, 0.25);
-            box-shadow: 0 15px 35px rgba(230, 0, 126, 0.06);
+            border: 1px solid rgba(230, 0, 126, 0.15);
+            box-shadow: 0 15px 35px rgba(230, 0, 126, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -2106,7 +2485,7 @@
         .combo-promo-box:hover {
             transform: translateY(-5px);
             border-color: var(--brand-pink);
-            box-shadow: 0 25px 45px rgba(230, 0, 126, 0.12);
+            box-shadow: 0 25px 45px rgba(230, 0, 126, 0.1), 0 0 0 1px rgba(230, 0, 126, 0.08);
         }
 
         .combo-badge {
@@ -2205,10 +2584,24 @@
     </div>
     <div class="noise-overlay"></div>
     <header class="header-wrapper">
+        <a href="https://www.youtube.com/@ComebackEnglish" class="header-yt-btn" target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span class="btn-text">YouTube</span>
+        </a>
         <div class="brand-container">
             <span class="brand-text">COMEBACK</span>
         </div>
-        <div class="brand-motto">Real Learning</div>
+        <button id="upcomingBatchesBtn" class="header-batches-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Upcoming Batches</span>
+        </button>
     </header>
     <main class="main-container">
         <!-- Bento Grid Hero Section -->
@@ -2353,132 +2746,30 @@
                 </p>
             </div>
 
-            <div class="courses-panel reveal delay-1">
-                <div class="course-card pink">
-                    <div class="course-badge badge-value">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 3h12l4 6-10 13L2 9Z"></path>
-                        </svg>
-                        Best Value
-                    </div>
-                    <h3 class="course-title">SPOKEN English</h3>
-                    <p class="course-subtitle">
-                        প্রথমে শিখবেন English। পরে প্রয়োজনমতো গ্রামার শিখাবো, আর গ্রামারও এমনভাবে শিখাবো যে বরিং লাগার কোনো চান্স নাই
-                    </p>
-                    <ul class="course-features">
-                        <li>24 Lessons</li>
-                        <li>24 Practice Sessions</li>
-                        <li>2 months</li>
-                         <li>2 Tests</li>
-                    </ul>
-                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                        class="course-dl-btn ripple-btn">
-                        Start Learning
-                    </a>
-                    <div class="course-price-wrap">
-                        <span class="price-old">৳4000</span>
-                        <span class="price-new">৳1999</span>
-                    </div>
+            <div class="courses-bento-grid reveal delay-1">
+                <div class="bento-course-card pink spoken-card span-full" data-course="spoken">
+                    <h3 class="bento-course-title">SPOKEN English</h3>
+                    <span class="bento-card-action">View Details &rarr;</span>
                 </div>
-                <div class="course-card red">
-                    <div class="course-badge badge-popular">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-                            </path>
-                        </svg>
-                        Most Popular
-                    </div>
-                    <h3 class="course-title">COMPLETE IELTS</h3>
-                    <p class="course-subtitle">
-                       চারটা স্কিল অর্জন করবেন এই কোর্সের মাধ্যমে। রিডিং,লিসেনিং,স্পিকিং,রাইটিং
-                    </p>
-                    <ul class="course-features">
-                        <li>36 Lessons</li>
-                          <li>36 Pratice Classes</li>
-                             <li>Total 72 sessions</li>
-                        <li>2 Mock Tests</li>
-                        <li>3 months</li>
-                    </ul>
-                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                        class="course-dl-btn ripple-btn">
-                        Start Learning
-                    </a>
-                    <div class="price-three-layers">
-                        <div class="price-layer regular">
-                            <span class="price-label">Regular Price</span>
-                            <span class="price-value price-old">৳14,000</span>
-                        </div>
-                        <div class="price-layer current">
-                            <span class="price-label">Current Offer</span>
-                            <span class="price-value price-new">৳6,999</span>
-                        </div>
-                        <div class="price-layer comeback">
-                            <span class="price-label">Comeback Offer</span>
-                            <span class="price-value price-comeback">৳4,999</span>
-                        </div>
-                    </div>
+                <div class="bento-course-card red complete-card span-full" data-course="complete">
+                    <h3 class="bento-course-title">COMPLETE IELTS</h3>
+                    <span class="bento-card-action">View Details &rarr;</span>
                 </div>
-                <div class="course-card orange">
-                    <h3 class="course-title">SPEAKING for IELTS</h3>
-                    <p class="course-subtitle">
-                       মাক্কারের সব কিউ কার্ড ৩৫ টা স্টোরি দিয়ে ডান।
-                    </p>
-                    <ul class="course-features">
-                        <li>24 classes</li>
-                        <li>24 Practice Sessions</li>
-                        <li>2 months</li>
-                          <li>2 Speaking Tests</li>
-                    </ul>
-                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                        class="course-dl-btn ripple-btn">
-                        Start Learning
-                    </a>
-                    <div class="course-price-wrap">
-                        <span class="price-old">৳6000</span>
-                        <span class="price-new">৳2999</span>
-                    </div>
+                <div class="bento-course-card orange speaking-card span-half" data-course="speaking">
+                    <h3 class="bento-course-title">SPEAKING for IELTS</h3>
+                    <span class="bento-card-action">View Details &rarr;</span>
                 </div>
-                <div class="course-card blue">
-                    <h3 class="course-title">READING for IELTS</h3>
-                    <p class="course-subtitle">
-                        Solve the trickiest questions, read faster, and find answers quicker.
-                    </p>
-                    <ul class="course-features">
-                        <li>18 sessions</li>
-                        <li>24/7 chat & call</li>
-                        <li>1.5 month</li>
-                          <li>Practice session</li>
-                    </ul>
-                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                        class="course-dl-btn ripple-btn">
-                        Start Learning
-                    </a>
-                    <div class="course-price-wrap">
-                        <span class="price-old">৳6000</span>
-                        <span class="price-new">৳2999</span>
-                    </div>
+                <div class="bento-course-card blue reading-card span-half" data-course="reading">
+                    <h3 class="bento-course-title">READING for IELTS</h3>
+                    <span class="bento-card-action">View Details &rarr;</span>
                 </div>
-                <div class="course-card black">
-                    <h3 class="course-title">WRITING for IELTS</h3>
-                    <p class="course-subtitle">
-                        Easily write high-scoring Task 1 & 2 responses.
-                    </p>
-                    <ul class="course-features">
-                        <li>18 workshops</li>
-                        <li>24/7 chat & call</li>
-                        <li>1.5 month</li>
-                          <li>Practice session</li>
-                    </ul>
-                    <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer"
-                        class="course-dl-btn ripple-btn">
-                        Start Learning
-                    </a>
-                    <div class="course-price-wrap">
-                        <span class="price-old">৳6000</span>
-                        <span class="price-new">৳2999</span>
-                    </div>
+                <div class="bento-course-card black writing-card span-half" data-course="writing">
+                    <h3 class="bento-course-title">WRITING for IELTS</h3>
+                    <span class="bento-card-action">View Details &rarr;</span>
+                </div>
+                <div class="bento-course-card green basic-card span-half" data-course="basic">
+                    <h3 class="bento-course-title">Basic + IELTS</h3>
+                    <span class="bento-card-action">View Details &rarr;</span>
                 </div>
             </div>
         </section>
@@ -2533,31 +2824,31 @@
                 </div>
                 <hr class="separator">
                 <div class="social-dock">
-                    <a href="https://www.facebook.com/comebackenglish" class="dock-item di-fb delay-v-1" target="_blank"
+                    <a href="https://www.youtube.com/@ComebackEnglish" class="dock-item di-yt delay-v-1" target="_blank"
+                        rel="noopener noreferrer" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/comebackenglish" class="dock-item di-fb delay-v-2" target="_blank"
                         rel="noopener noreferrer" aria-label="Facebook">
                         <svg viewBox="0 0 24 24">
                             <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                         </svg>
                     </a>
-                    <a href="https://www.instagram.com/comebackenglish/" class="dock-item di-ig delay-v-2"
+                    <a href="https://www.instagram.com/comebackenglish/" class="dock-item di-ig delay-v-3"
                         target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <svg viewBox="0 0 24 24">
                             <path
                                 d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                     </a>
-                    <a href="https://www.tiktok.com/@comebackenglish" class="dock-item di-tk delay-v-3" target="_blank"
+                    <a href="https://www.tiktok.com/@comebackenglish" class="dock-item di-tk delay-v-4" target="_blank"
                         rel="noopener noreferrer" aria-label="TikTok">
                         <svg viewBox="0 0 24 24">
                             <path
                                 d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.youtube.com/@ComebackEnglish" class="dock-item di-yt delay-v-4" target="_blank"
-                        rel="noopener noreferrer" aria-label="YouTube">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                         </svg>
                     </a>
                     <a href="https://t.me/comebackenglish" class="dock-item di-tg delay-v-4" target="_blank"
@@ -2912,6 +3203,236 @@
                 if (activeTab) moveIndicator(activeTab);
             });
 
+            // 6. Upcoming Batches Modal Logic
+            const batchesModal = document.getElementById('batchesModal');
+            const upcomingBatchesBtn = document.getElementById('upcomingBatchesBtn');
+            const batchesCloseBtn = document.getElementById('batchesCloseBtn');
+
+            if (batchesModal && upcomingBatchesBtn && batchesCloseBtn) {
+                upcomingBatchesBtn.addEventListener('click', () => {
+                    batchesModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                const closeBatchesModal = () => {
+                    batchesModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                };
+
+                batchesCloseBtn.addEventListener('click', closeBatchesModal);
+
+                batchesModal.addEventListener('click', (e) => {
+                    if (e.target === batchesModal || e.target.classList.contains('batches-modal-content')) {
+                        closeBatchesModal();
+                    }
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && batchesModal.classList.contains('active')) {
+                        closeBatchesModal();
+                    }
+                });
+            }
+
+            // 7. Course Details Data & Modal Logic
+            const courseData = {
+                spoken: {
+                    title: "SPOKEN English",
+                    subtitle: "প্রথমে শিখবেন English। পরে প্রয়োজনমতো গ্রামার শিখাবো, আর গ্রামারও এমনভাবে শিখাবো যে বরিং লাগার কোনো চান্স নাই",
+                    badge: "Best Value",
+                    badgeType: "value",
+                    theme: "pink",
+                    features: [
+                        "24 Lessons",
+                        "24 Practice Sessions",
+                        "2 months",
+                        "2 Tests"
+                    ],
+                    pricingHtml: `
+                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳4000</span>
+                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff;">৳1999</span>
+                    `
+                },
+                complete: {
+                    title: "COMPLETE IELTS",
+                    subtitle: "চারটা স্কিল অর্জন করবেন এই কোর্সের মাধ্যমে। রিডিং,লিসেনিং,স্পিকিং,রাইটিং",
+                    badge: "Most Popular",
+                    badgeType: "popular",
+                    theme: "red",
+                    features: [
+                        "36 Lessons",
+                        "36 Practice Classes",
+                        "Total 72 sessions",
+                        "2 Mock Tests",
+                        "3 months"
+                    ],
+                    pricingHtml: `
+                        <div class="price-three-layers" style="border: none; padding: 0; width: 100%; display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0;">
+                            <div class="price-layer regular" style="display: flex; justify-content: space-between; align-items: center; opacity: 0.6; font-size: 0.95rem;">
+                                <span class="price-label" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Regular Price</span>
+                                <span class="price-value price-old" style="text-decoration: line-through;">৳14,000</span>
+                            </div>
+                            <div class="price-layer current" style="display: flex; justify-content: space-between; align-items: center; opacity: 0.6; font-size: 1.15rem; font-weight: 700;">
+                                <span class="price-label" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Current Offer</span>
+                                <span class="price-value price-new" style="text-decoration: line-through;">৳6,999</span>
+                            </div>
+                            <div class="price-layer comeback" style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.12); padding: 0.4rem 0.6rem; border-radius: var(--radius-sm); margin-top: 0.2rem; border: 1px dashed rgba(255, 255, 255, 0.35); box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%;">
+                                <span class="price-label" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: #fff;">Comeback Offer</span>
+                                <span class="price-value price-comeback" style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; color: #fff;">৳4,999</span>
+                            </div>
+                        </div>
+                    `
+                },
+                speaking: {
+                    title: "SPEAKING for IELTS",
+                    subtitle: "মাক্কারের সব কিউ কার্ড ৩৫ টা স্টোরি দিয়ে ডান।",
+                    theme: "orange",
+                    features: [
+                        "24 classes",
+                        "24 Practice Sessions",
+                        "2 months",
+                        "2 Speaking Tests"
+                    ],
+                    pricingHtml: `
+                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳6000</span>
+                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff;">৳2999</span>
+                    `
+                },
+                reading: {
+                    title: "READING for IELTS",
+                    subtitle: "Solve the trickiest questions, read faster, and find answers quicker.",
+                    theme: "blue",
+                    features: [
+                        "18 sessions",
+                        "24/7 chat & call",
+                        "1.5 month",
+                        "Practice session"
+                    ],
+                    pricingHtml: `
+                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳6000</span>
+                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff;">৳2999</span>
+                    `
+                },
+                writing: {
+                    title: "WRITING for IELTS",
+                    subtitle: "Easily write high-scoring Task 1 & 2 responses.",
+                    theme: "black",
+                    features: [
+                        "18 workshops",
+                        "24/7 chat & call",
+                        "1.5 month",
+                        "Practice session"
+                    ],
+                    pricingHtml: `
+                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳6000</span>
+                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff;">৳2999</span>
+                    `
+                },
+                basic: {
+                    title: "Basic + IELTS",
+                    subtitle: "from nervous to natural",
+                    theme: "green",
+                    features: [
+                        "60 Lessons",
+                        "60 Practice Classes",
+                        "2 Mock Tests",
+                        "2 Tests",
+                        "5 months"
+                    ],
+                    pricingHtml: `
+                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳10000</span>
+                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff;">৳6999</span>
+                    `
+                }
+            };
+
+            const courseDetailModal = document.getElementById('courseDetailModal');
+            const courseDetailCloseBtn = document.getElementById('courseDetailCloseBtn');
+            const bentoCards = document.querySelectorAll('.bento-course-card');
+
+            if (courseDetailModal && courseDetailCloseBtn) {
+                const openCourseDetail = (courseKey) => {
+                    const data = courseData[courseKey];
+                    if (!data) return;
+
+                    document.getElementById('courseDetailTitle').innerText = data.title;
+                    document.getElementById('courseDetailSubtitle').innerText = data.subtitle;
+
+                    const badgeEl = document.getElementById('courseDetailBadge');
+                    if (data.badge) {
+                        badgeEl.innerText = data.badge;
+                        badgeEl.className = `course-badge ${data.badgeType || ''}`;
+                        badgeEl.style.display = 'flex';
+                        badgeEl.style.color = '';
+                        if (data.theme === 'pink') badgeEl.style.color = 'var(--brand-pink)';
+                        if (data.theme === 'red') badgeEl.style.color = '#e31b23';
+                    } else {
+                        badgeEl.style.display = 'none';
+                    }
+
+                    const featuresContainer = document.getElementById('courseDetailFeatures');
+                    featuresContainer.innerHTML = '';
+                    data.features.forEach(feat => {
+                        const li = document.createElement('li');
+                        li.innerText = feat;
+                        featuresContainer.appendChild(li);
+                    });
+
+                    document.getElementById('courseDetailPriceWrap').innerHTML = data.pricingHtml;
+
+                    const modalContent = courseDetailModal.querySelector('.course-detail-modal-content');
+                    modalContent.className = `batches-modal-content course-detail-modal-content ${data.theme}`;
+                    modalContent.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                    modalContent.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.8)';
+                    
+                    if (data.theme === 'pink') {
+                        modalContent.style.borderColor = 'rgba(230, 0, 126, 0.3)';
+                        modalContent.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(230, 0, 126, 0.15)';
+                    } else if (data.theme === 'red') {
+                        modalContent.style.borderColor = 'rgba(227, 27, 35, 0.3)';
+                        modalContent.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(227, 27, 35, 0.15)';
+                    } else if (data.theme === 'orange') {
+                        modalContent.style.borderColor = 'rgba(255, 142, 0, 0.3)';
+                        modalContent.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 142, 0, 0.15)';
+                    } else if (data.theme === 'blue') {
+                        modalContent.style.borderColor = 'rgba(24, 119, 242, 0.3)';
+                        modalContent.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(24, 119, 242, 0.15)';
+                    } else if (data.theme === 'green') {
+                        modalContent.style.borderColor = 'rgba(0, 176, 80, 0.3)';
+                        modalContent.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 176, 80, 0.15)';
+                    }
+
+                    courseDetailModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                };
+
+                bentoCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const courseKey = card.getAttribute('data-course');
+                        openCourseDetail(courseKey);
+                    });
+                });
+
+                const closeDetailModal = () => {
+                    courseDetailModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                };
+
+                courseDetailCloseBtn.addEventListener('click', closeDetailModal);
+
+                courseDetailModal.addEventListener('click', (e) => {
+                    if (e.target === courseDetailModal || e.target.classList.contains('course-detail-modal-content')) {
+                        closeDetailModal();
+                    }
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && courseDetailModal.classList.contains('active')) {
+                        closeDetailModal();
+                    }
+                });
+            }
+
             // Initial alignment
             setTimeout(() => {
                 const activeTab = document.querySelector('.nav-tab.active');
@@ -3067,6 +3588,91 @@
             window.addEventListener('load', resizeCanvasSync);
         })();
     </script>
+
+    <!-- Upcoming Batches Modal -->
+    <div id="batchesModal" class="batches-modal">
+        <div class="batches-modal-content">
+            <button id="batchesCloseBtn" class="batches-modal-close" aria-label="Close modal">&times;</button>
+            <h2 class="batches-modal-title">Upcoming Batches</h2>
+            <div class="batches-table-wrapper">
+                <table class="batches-table">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Date</th>
+                            <th>Schedule</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="batch-course-name">the IELTS course</td>
+                            <td class="batch-date-col">18 July</td>
+                            <td class="batch-time-col">Noon 2.00</td>
+                        </tr>
+                        <tr>
+                            <td class="batch-course-name">Spoken English course</td>
+                            <td class="batch-date-col">18 July</td>
+                            <td class="batch-time-col">Noon 12.00</td>
+                        </tr>
+                        <tr>
+                            <td class="batch-course-name">Basic + IELTS course</td>
+                            <td class="batch-date-col">18 July</td>
+                            <td class="batch-time-col">Noon 12.00</td>
+                        </tr>
+                        <tr>
+                            <td class="batch-course-name">Reading for IELTS</td>
+                            <td class="batch-date-col">5 July</td>
+                            <td class="batch-time-col">Morning 10.00</td>
+                        </tr>
+                        <tr>
+                            <td class="batch-course-name">Writing for IELTS</td>
+                            <td class="batch-date-col">5 July</td>
+                            <td class="batch-time-col">Morning 11.30</td>
+                        </tr>
+                        <tr>
+                            <td class="batch-course-name">Speaking for IELTS</td>
+                            <td class="batch-date-col">Always Open for Admission</td>
+                            <td class="batch-time-col">Night 8.30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="batches-modal-footer">
+                <a href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer" class="batches-modal-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right: 4px;">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <polyline points="16 11 18 13 22 9"></polyline>
+                    </svg>
+                    Book Your Seat Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Detail Modal -->
+    <div id="courseDetailModal" class="batches-modal">
+        <div class="batches-modal-content course-detail-modal-content" style="max-width: 500px; padding: 2.5rem 2rem;">
+            <button id="courseDetailCloseBtn" class="batches-modal-close" aria-label="Close modal">&times;</button>
+            <div id="courseDetailBadge" class="course-badge" style="display:none; position: absolute; top: 1.5rem; left: 1.5rem; width: 65px; height: 65px; font-size: 0.55rem; padding: 0.3rem;"></div>
+            <h2 id="courseDetailTitle" class="batches-modal-title" style="margin-bottom: 0.5rem; text-align: center;">Course Title</h2>
+            <p id="courseDetailSubtitle" class="course-subtitle" style="color: var(--text-secondary); text-align: center; margin-bottom: 1.5rem; font-weight: 500; font-size: 0.95rem;"></p>
+            <div class="course-detail-body">
+                <h4 style="font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-tertiary); margin-bottom: 0.75rem;">What you will learn / Features</h4>
+                <ul id="courseDetailFeatures" class="course-features" style="margin-bottom: 2rem;">
+                    <!-- Dynamically populated -->
+                </ul>
+            </div>
+            <div class="course-detail-footer" style="display: flex; flex-direction: column; align-items: center; gap: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.5rem;">
+                <div id="courseDetailPriceWrap" class="course-price-wrap" style="border: none; padding: 0; margin: 0; align-items: center;">
+                    <!-- Dynamically populated -->
+                </div>
+                <a id="courseDetailLink" href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer" class="batches-modal-btn ripple-btn" style="width: 100%; justify-content: center;">
+                    Start Learning
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Lightbox Modal Markup -->
     <div id="lightboxModal" class="lightbox-modal">
