@@ -1166,7 +1166,7 @@
             font-weight: 700;
             letter-spacing: -0.04em;
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.25rem;
             text-transform: uppercase;
             position: relative;
         }
@@ -1181,6 +1181,57 @@
             height: 3px;
             background: var(--brand-pink);
             border-radius: 2px;
+        }
+
+        .premium-white-section .premium-subtitle {
+            text-align: center;
+            font-family: 'Hind Siliguri', var(--font-body), sans-serif;
+            font-size: clamp(1rem, 2.2vw, 1.18rem);
+            font-weight: 600;
+            color: #475569;
+            margin: 0 auto 2.5rem auto;
+            max-width: 850px;
+            line-height: 1.75;
+            padding: 0 1rem;
+        }
+
+        /* Word-by-word Reveal Animation */
+        .premium-subtitle.word-reveal {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .word-reveal .reveal-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(8px);
+            filter: blur(3px);
+            transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+            will-change: opacity, transform, filter;
+            margin-right: 0.18em;
+        }
+
+        .word-reveal.active .reveal-word {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+            transition-delay: calc(var(--w-i, 0) * 0.12s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .word-reveal .reveal-word {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+                transition: none !important;
+            }
+        }
+
+        .premium-white-section .discount-highlight {
+            color: var(--brand-pink);
+            font-weight: 700;
+            white-space: nowrap;
         }
 
         .premium-white-section .scroll-indicator {
@@ -3401,7 +3452,26 @@
         </section>
 
         <section class="premium-white-section">
-            <h2 class="premium-title reveal delay-1">Premium courses</h2>
+            <h2 class="premium-title reveal delay-1">Comeback Courses</h2>
+            <p class="premium-subtitle word-reveal reveal delay-1" id="comebackSavingsText">
+                <span class="reveal-word" style="--w-i: 0;">বেশি</span>
+                <span class="reveal-word" style="--w-i: 1;">শিখলে,</span>
+                <span class="reveal-word" style="--w-i: 2;">আরও</span>
+                <span class="reveal-word" style="--w-i: 3;">বেশি</span>
+                <span class="reveal-word" style="--w-i: 4;">সেভিংস:</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 5;">১টি</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 6;">কোর্সে</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 7;">১১%</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 8;">OFF,</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 9;">২টি-তে</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 10;">২২%</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 11;">OFF,</span>
+                <span class="reveal-word" style="--w-i: 12;">&amp;</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 13;">৩টিতে</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 14;">পাবেন</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 15;">৩৩ %</span>
+                <span class="reveal-word discount-highlight" style="--w-i: 16;">OFF!</span>
+            </p>
 
             <div class="courses-bento-grid reveal delay-1">
                 <div class="bento-course-card pink spoken-card" data-course="spoken">
@@ -3568,6 +3638,19 @@
             }, revealOptions);
 
             revealElements.forEach(el => revealObserver.observe(el));
+
+            // Safety trigger: ensure word reveal triggers if element is already in view or observer delayed
+            const checkWordRevealInView = () => {
+                const wordReveal = document.getElementById('comebackSavingsText');
+                if (wordReveal && !wordReveal.classList.contains('active')) {
+                    const rect = wordReveal.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+                        wordReveal.classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', checkWordRevealInView, { passive: true });
+            setTimeout(checkWordRevealInView, 800);
 
             // 2. 3D Tilt Effect on Desktop
             if (!isMobile) {
