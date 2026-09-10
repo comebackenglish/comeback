@@ -1195,43 +1195,250 @@
             padding: 0 1rem;
         }
 
-        /* Word-by-word Reveal Animation */
-        .premium-subtitle.word-reveal {
-            opacity: 1 !important;
-            transform: none !important;
-            transition: none !important;
+        /* --- Savings Offer Card (4-Line Layout with Offer & Ripple Effect) --- */
+        .savings-offer-card {
+            max-width: 490px;
+            margin: 0 auto 2.5rem auto;
+            background: linear-gradient(145deg, #ffffff 0%, #fff6fa 100%);
+            border: 2px solid rgba(255, 42, 133, 0.25);
+            border-radius: 20px;
+            padding: 1.5rem 1.6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(255, 42, 133, 0.08);
+            animation: offer-card-pulse-ripple 3s infinite ease-in-out;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .word-reveal .reveal-word {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(8px);
-            filter: blur(3px);
-            transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
-            will-change: opacity, transform, filter;
-            margin-right: 0.18em;
+        .savings-offer-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 42, 133, 0.5);
+            box-shadow: 0 16px 36px rgba(255, 42, 133, 0.16);
         }
 
-        .word-reveal.active .reveal-word {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-            transition-delay: calc(var(--w-i, 0) * 0.12s);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .word-reveal .reveal-word {
-                opacity: 1 !important;
-                transform: none !important;
-                filter: none !important;
-                transition: none !important;
+        @keyframes offer-card-pulse-ripple {
+            0% {
+                box-shadow: 0 10px 30px rgba(255, 42, 133, 0.08), 0 0 0 0 rgba(255, 42, 133, 0.4);
+            }
+            70% {
+                box-shadow: 0 10px 30px rgba(255, 42, 133, 0.08), 0 0 0 14px rgba(255, 42, 133, 0);
+            }
+            100% {
+                box-shadow: 0 10px 30px rgba(255, 42, 133, 0.08), 0 0 0 0 rgba(255, 42, 133, 0);
             }
         }
 
-        .premium-white-section .discount-highlight {
-            color: var(--brand-pink);
+        .offer-ripple-beacon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            background: rgba(255, 42, 133, 0.1);
+            border: 1px solid rgba(255, 42, 133, 0.25);
+            border-radius: 100px;
+            padding: 0.32rem 0.9rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .offer-beacon-dot-wrap {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .offer-beacon-dot {
+            width: 8px;
+            height: 8px;
+            background: #ff2a85;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .beacon-ripple-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 42, 133, 0.6);
+            animation: beacon-ripple-expand 2s infinite ease-out;
+            pointer-events: none;
+        }
+
+        .beacon-ripple-ring.delay {
+            animation-delay: 1s;
+        }
+
+        @keyframes beacon-ripple-expand {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scale(3.2);
+                opacity: 0;
+            }
+        }
+
+        .offer-beacon-title {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ff2a85;
+        }
+
+        .offer-line-1 {
+            font-family: 'Hind Siliguri', var(--font-body), sans-serif;
+            font-size: clamp(1.2rem, 2.8vw, 1.45rem);
             font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.1rem;
+            line-height: 1.35;
+        }
+
+        .offer-tiers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .offer-tier-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 370px;
+            background: #ffffff;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 12px;
+            padding: 0.6rem 1rem;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .offer-tier-row:hover {
+            border-color: rgba(255, 42, 133, 0.35);
+            background: #fffafa;
+            transform: translateX(3px);
+        }
+
+        .offer-tier-row.best-value {
+            background: linear-gradient(90deg, rgba(255, 42, 133, 0.07) 0%, rgba(255, 142, 0, 0.07) 100%);
+            border-color: rgba(255, 42, 133, 0.4);
+            box-shadow: 0 4px 14px rgba(255, 42, 133, 0.1);
+        }
+
+        .offer-tier-left {
+            font-family: 'Hind Siliguri', var(--font-body), sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+
+        .offer-tier-bullet {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #ff2a85;
+            display: inline-block;
+        }
+
+        .offer-tier-row.best-value .offer-tier-bullet {
+            background: linear-gradient(135deg, #ff2a85, #ff8e00);
+            box-shadow: 0 0 6px rgba(255, 42, 133, 0.6);
+        }
+
+        .offer-discount-badge {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.92rem;
+            padding: 0.32rem 0.85rem;
+            border-radius: 100px;
             white-space: nowrap;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-tier-1 {
+            background: rgba(255, 42, 133, 0.1);
+            color: #ff2a85;
+            border: 1px solid rgba(255, 42, 133, 0.25);
+        }
+
+        .badge-tier-2 {
+            background: rgba(255, 42, 133, 0.15);
+            color: #d9006c;
+            border: 1px solid rgba(255, 42, 133, 0.35);
+        }
+
+        .badge-tier-3 {
+            background: linear-gradient(135deg, #ff2a85 0%, #ff5238 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 42, 133, 0.35);
+            position: relative;
+            animation: ripple-badge-anim 2s infinite ease-in-out;
+        }
+
+        @keyframes ripple-badge-anim {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 42, 133, 0.6), 0 4px 12px rgba(255, 42, 133, 0.35);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 42, 133, 0), 0 4px 12px rgba(255, 42, 133, 0.35);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 42, 133, 0), 0 4px 12px rgba(255, 42, 133, 0.35);
+            }
+        }
+
+        /* Interactive Click/Tap Ripple */
+        .savings-offer-card .touch-ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 42, 133, 0.35) 0%, rgba(255, 42, 133, 0) 70%);
+            transform: scale(0);
+            animation: touch-ripple-expand 0.7s cubic-bezier(0.1, 0.8, 0.3, 1);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes touch-ripple-expand {
+            to {
+                transform: scale(2.2);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .savings-offer-card {
+                padding: 1.25rem 1rem;
+                margin-bottom: 2rem;
+            }
+            .offer-line-1 {
+                font-size: 1.15rem;
+            }
+            .offer-tier-left {
+                font-size: 0.96rem;
+            }
+            .offer-discount-badge {
+                font-size: 0.85rem;
+                padding: 0.28rem 0.7rem;
+            }
         }
 
         .premium-white-section .scroll-indicator {
@@ -3453,25 +3660,40 @@
 
         <section class="premium-white-section">
             <h2 class="premium-title reveal delay-1">Comeback Courses</h2>
-            <p class="premium-subtitle word-reveal reveal delay-1" id="comebackSavingsText">
-                <span class="reveal-word" style="--w-i: 0;">বেশি</span>
-                <span class="reveal-word" style="--w-i: 1;">শিখলে,</span>
-                <span class="reveal-word" style="--w-i: 2;">আরও</span>
-                <span class="reveal-word" style="--w-i: 3;">বেশি</span>
-                <span class="reveal-word" style="--w-i: 4;">সেভিংস:</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 5;">১টি</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 6;">কোর্সে</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 7;">১১%</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 8;">OFF,</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 9;">২টি-তে</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 10;">২২%</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 11;">OFF,</span>
-                <span class="reveal-word" style="--w-i: 12;">&amp;</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 13;">৩টিতে</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 14;">পাবেন</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 15;">৩৩ %</span>
-                <span class="reveal-word discount-highlight" style="--w-i: 16;">OFF!</span>
-            </p>
+            <div class="savings-offer-card reveal delay-1" id="comebackSavingsText">
+                <div class="offer-ripple-beacon">
+                    <span class="offer-beacon-dot-wrap">
+                        <span class="beacon-ripple-ring"></span>
+                        <span class="beacon-ripple-ring delay"></span>
+                        <span class="offer-beacon-dot"></span>
+                    </span>
+                    <span class="offer-beacon-title">SPECIAL DISCOUNT OFFER</span>
+                </div>
+                <div class="offer-line-1">বেশি শিখলে, আরও বেশি সেভিংস</div>
+                <div class="offer-tiers-list">
+                    <div class="offer-tier-row line-2">
+                        <span class="offer-tier-left">
+                            <span class="offer-tier-bullet"></span>
+                            <span>১টি কোর্সে</span>
+                        </span>
+                        <span class="offer-discount-badge badge-tier-1">১১% OFF</span>
+                    </div>
+                    <div class="offer-tier-row line-3">
+                        <span class="offer-tier-left">
+                            <span class="offer-tier-bullet"></span>
+                            <span>২টি-তে</span>
+                        </span>
+                        <span class="offer-discount-badge badge-tier-2">২২% OFF</span>
+                    </div>
+                    <div class="offer-tier-row line-4 best-value">
+                        <span class="offer-tier-left">
+                            <span class="offer-tier-bullet"></span>
+                            <span>৩টিতে পাবেন</span>
+                        </span>
+                        <span class="offer-discount-badge badge-tier-3">৩৩ % OFF!</span>
+                    </div>
+                </div>
+            </div>
 
             <div class="courses-bento-grid reveal delay-1">
                 <div class="bento-course-card pink spoken-card" data-course="spoken">
@@ -3651,6 +3873,22 @@
             };
             window.addEventListener('scroll', checkWordRevealInView, { passive: true });
             setTimeout(checkWordRevealInView, 800);
+
+            // Interactive Ripple on Offer Card
+            const offerCard = document.getElementById('comebackSavingsText');
+            if (offerCard) {
+                offerCard.addEventListener('pointerdown', (e) => {
+                    const ripple = document.createElement('span');
+                    ripple.className = 'touch-ripple-effect';
+                    const rect = offerCard.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height) * 1.5;
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+                    offerCard.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 750);
+                });
+            }
 
             // 2. 3D Tilt Effect on Desktop
             if (!isMobile) {
@@ -3977,7 +4215,6 @@
                         "2 Tests"
                     ],
                     pricingHtml: `
-                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳4000</span>
                         <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳1999</span>
                     `
                 },
@@ -3993,7 +4230,6 @@
                         "3 months"
                     ],
                     pricingHtml: `
-                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳14000</span>
                         <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳6999</span>
                     `
                 },
@@ -4010,7 +4246,6 @@
                         "One-to-one support"
                     ],
                     pricingHtml: `
-                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳4000</span>
                         <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳1999</span>
                     `
                 },
@@ -4026,7 +4261,6 @@
                         "2 Speaking test"
                     ],
                     pricingHtml: `
-                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳6000</span>
                         <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳2999</span>
                     `
                 },
@@ -4041,7 +4275,6 @@
                         "Practice session"
                     ],
                     pricingHtml: `
-                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳6000</span>
                         <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳2999</span>
                     `
                 },
@@ -4056,7 +4289,6 @@
                         "Practice session"
                     ],
                     pricingHtml: `
-                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳6000</span>
                         <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳2999</span>
                     `
                 },
@@ -4072,7 +4304,6 @@
                         "2 Speaking test"
                     ],
                     pricingHtml: `
-                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳6000</span>
                         <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳2999</span>
                     `
                 },
@@ -4088,7 +4319,6 @@
                         "5 months"
                     ],
                     pricingHtml: `
-                        <span class="price-old" style="text-decoration: line-through; opacity: 0.6; font-size: 1.1rem; margin-right: 0.75rem;">৳10000</span>
                         <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳4999</span>
                     `
                 }
