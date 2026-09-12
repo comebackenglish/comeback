@@ -37,7 +37,8 @@
     "https://www.facebook.com/comebackenglish",
     "https://www.instagram.com/comebackenglish/",
     "https://www.tiktok.com/@comebackenglish",
-    "https://www.youtube.com/@ComebackEnglish"
+    "https://www.youtube.com/@ComebackEnglish",
+    "https://www.youtube.com/@comebackielts"
   ]
 }
 </script>
@@ -2060,7 +2061,7 @@
 
         @media (min-width: 520px) {
             .social-text-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -2103,6 +2104,11 @@
             background: #010101;
             border: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .social-text-btn.btn-yt {
+            background: #FF0000;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.35);
         }
 
         /* Mobile Responsive */
@@ -2940,6 +2946,138 @@
         }
         .course-detail-modal-content.green .batches-modal-btn {
             background: linear-gradient(135deg, #00b050 0%, #007020 100%);
+        }
+
+        /* Course Detail Modal Price Breakdown */
+        .course-detail-modal-content {
+            max-width: 520px;
+            width: 100%;
+        }
+
+        .course-modal-pricing-wrap {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .course-modal-main-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.55rem;
+        }
+
+        .main-price-title {
+            font-family: var(--font-display);
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .main-price-figure {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .course-modal-discount-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.65rem;
+            width: 100%;
+        }
+
+        .course-discount-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 0.7rem 0.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            text-align: center;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+        }
+
+        .course-discount-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 42, 133, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-discount-badge {
+            font-family: var(--font-display), 'Hind Siliguri', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.55rem;
+            border-radius: 100px;
+            background: rgba(255, 42, 133, 0.14);
+            color: #ff2a85;
+            border: 1px solid rgba(255, 42, 133, 0.3);
+            white-space: nowrap;
+            line-height: 1.2;
+        }
+
+        .course-discount-badge.best {
+            background: linear-gradient(135deg, #ff2a85 0%, #ff5238 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 3px 10px rgba(255, 42, 133, 0.4);
+        }
+
+        .course-discount-val {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            letter-spacing: -0.3px;
+        }
+
+        .course-discount-desc {
+            font-family: 'Hind Siliguri', var(--font-body), sans-serif;
+            font-size: 0.82rem;
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.2;
+            white-space: nowrap;
+            margin-bottom: 0.1rem;
+        }
+
+        .course-discount-card.tier-33.best {
+            background: rgba(255, 42, 133, 0.08);
+            border-color: rgba(255, 42, 133, 0.38);
+            box-shadow: 0 4px 16px rgba(255, 42, 133, 0.12);
+        }
+
+        @media (max-width: 440px) {
+            .course-modal-discount-row {
+                gap: 0.35rem;
+            }
+            .course-discount-card {
+                padding: 0.55rem 0.2rem;
+                border-radius: 10px;
+            }
+            .course-discount-badge {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.35rem;
+            }
+            .course-discount-val {
+                font-size: 1.05rem;
+            }
+            .course-discount-desc {
+                font-size: 0.68rem;
+            }
+        }
+
         .combo-course-badge {
             padding: 0.5rem 1.25rem;
             border-radius: 100px;
@@ -3403,6 +3541,32 @@
             color: #1e293b !important;
         }
 
+        [data-theme="light"] .main-price-figure {
+            color: #0f172a !important;
+        }
+        [data-theme="light"] .main-price-title {
+            color: #64748b !important;
+        }
+        [data-theme="light"] .course-discount-card {
+            background: #ffffff !important;
+            border-color: rgba(15, 23, 42, 0.1) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+        }
+        [data-theme="light"] .course-discount-card.tier-33.best {
+            background: linear-gradient(135deg, rgba(255, 42, 133, 0.06) 0%, rgba(255, 142, 0, 0.06) 100%) !important;
+            border-color: rgba(255, 42, 133, 0.35) !important;
+        }
+        [data-theme="light"] .course-discount-val {
+            color: #0f172a !important;
+        }
+        [data-theme="light"] .course-discount-desc {
+            color: #0f172a !important;
+            font-weight: 700 !important;
+        }
+        [data-theme="light"] .course-detail-footer {
+            border-top-color: rgba(15, 23, 42, 0.08) !important;
+        }
+
         [data-theme="light"] .batches-modal-close {
             color: #64748b !important;
             background: rgba(15, 23, 42, 0.05) !important;
@@ -3674,23 +3838,23 @@
                     <div class="offer-tier-row line-2">
                         <span class="offer-tier-left">
                             <span class="offer-tier-bullet"></span>
-                            <span>১টি কোর্সে</span>
+                            <span>১টি কোর্সে ভর্তিতে</span>
                         </span>
                         <span class="offer-discount-badge badge-tier-1">১১% OFF</span>
                     </div>
                     <div class="offer-tier-row line-3">
                         <span class="offer-tier-left">
                             <span class="offer-tier-bullet"></span>
-                            <span>২টি-তে</span>
+                            <span>২টি কোর্সে ভর্তিতে</span>
                         </span>
                         <span class="offer-discount-badge badge-tier-2">২২% OFF</span>
                     </div>
                     <div class="offer-tier-row line-4 best-value">
                         <span class="offer-tier-left">
                             <span class="offer-tier-bullet"></span>
-                            <span>৩টিতে পাবেন</span>
+                            <span>৩টি কোর্সে ভর্তিতে</span>
                         </span>
-                        <span class="offer-discount-badge badge-tier-3">৩৩ % OFF!</span>
+                        <span class="offer-discount-badge badge-tier-3">৩৩% OFF</span>
                     </div>
                 </div>
             </div>
@@ -3798,6 +3962,10 @@
                         rel="noopener noreferrer">Telegram</a>
                     <a href="https://www.tiktok.com/@comebackenglish" class="social-text-btn btn-tk" target="_blank"
                         rel="noopener noreferrer">TikTok</a>
+                    <a href="https://www.youtube.com/@ComebackEnglish" class="social-text-btn btn-yt" target="_blank"
+                        rel="noopener noreferrer">YouTube</a>
+                    <a href="https://www.youtube.com/@comebackielts" class="social-text-btn btn-yt" target="_blank"
+                        rel="noopener noreferrer">YouTube IELTS</a>
                 </div>
                 <hr class="separator" style="margin-top: 1.5rem;">
                 <div class="contact-info"
@@ -4203,6 +4371,38 @@
             }
 
             // 7. Course Details Data & Modal Logic
+            function getCoursePricingHtml(mainPrice) {
+                const p11 = Math.round(mainPrice * 0.89);
+                const p22 = Math.round(mainPrice * 0.78);
+                const p33 = Math.round(mainPrice * 0.67);
+
+                return `
+                    <div class="course-modal-pricing-wrap">
+                        <div class="course-modal-main-price">
+                            <span class="main-price-title">Main Fee:</span>
+                            <span class="main-price-figure">৳${mainPrice}</span>
+                        </div>
+                        <div class="course-modal-discount-row">
+                            <div class="course-discount-card tier-11">
+                                <span class="course-discount-desc">১টি কোর্সে</span>
+                                <span class="course-discount-badge">১১% OFF</span>
+                                <span class="course-discount-val">৳${p11}</span>
+                            </div>
+                            <div class="course-discount-card tier-22">
+                                <span class="course-discount-desc">২টি কোর্সে</span>
+                                <span class="course-discount-badge">২২% OFF</span>
+                                <span class="course-discount-val">৳${p22}</span>
+                            </div>
+                            <div class="course-discount-card tier-33 best">
+                                <span class="course-discount-desc">৩টি কোর্সে</span>
+                                <span class="course-discount-badge best">৩৩% OFF</span>
+                                <span class="course-discount-val">৳${p33}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
             const courseData = {
                 spoken: {
                     title: "SPOKEN English",
@@ -4214,9 +4414,8 @@
                         "2 months",
                         "2 Tests"
                     ],
-                    pricingHtml: `
-                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳1999</span>
-                    `
+                    price: 1999,
+                    pricingHtml: getCoursePricingHtml(1999)
                 },
                 complete: {
                     title: "COMPLETE IELTS",
@@ -4229,9 +4428,8 @@
                         "2 Mock Tests",
                         "3 months"
                     ],
-                    pricingHtml: `
-                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳6999</span>
-                    `
+                    price: 6999,
+                    pricingHtml: getCoursePricingHtml(6999)
                 },
                 intensive: {
                     title: "IELTS Intensive",
@@ -4245,9 +4443,8 @@
                         "Premium materials for overall improvement",
                         "One-to-one support"
                     ],
-                    pricingHtml: `
-                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳1999</span>
-                    `
+                    price: 1999,
+                    pricingHtml: getCoursePricingHtml(1999)
                 },
                 speaking: {
                     title: "IELTS Speaking",
@@ -4260,9 +4457,8 @@
                         "Part 3 Question Practice",
                         "2 Speaking test"
                     ],
-                    pricingHtml: `
-                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳2999</span>
-                    `
+                    price: 2999,
+                    pricingHtml: getCoursePricingHtml(2999)
                 },
                 reading: {
                     title: "READING for IELTS",
@@ -4274,9 +4470,8 @@
                         "1.5 month",
                         "Practice session"
                     ],
-                    pricingHtml: `
-                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳2999</span>
-                    `
+                    price: 2999,
+                    pricingHtml: getCoursePricingHtml(2999)
                 },
                 writing: {
                     title: "WRITING for IELTS",
@@ -4288,9 +4483,8 @@
                         "1.5 month",
                         "Practice session"
                     ],
-                    pricingHtml: `
-                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳2999</span>
-                    `
+                    price: 2999,
+                    pricingHtml: getCoursePricingHtml(2999)
                 },
                 evaluation: {
                     title: "IELTS Speaking",
@@ -4303,9 +4497,8 @@
                         "Part 3 Question Practice",
                         "2 Speaking test"
                     ],
-                    pricingHtml: `
-                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳2999</span>
-                    `
+                    price: 2999,
+                    pricingHtml: getCoursePricingHtml(2999)
                 },
                 basic: {
                     title: "Basic + IELTS",
@@ -4318,9 +4511,8 @@
                         "2 Tests",
                         "5 months"
                     ],
-                    pricingHtml: `
-                        <span class="price-new" style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;">৳4999</span>
-                    `
+                    price: 4999,
+                    pricingHtml: getCoursePricingHtml(4999)
                 }
             };
 
@@ -4625,7 +4817,7 @@
                 </ul>
             </div>
             <div class="course-detail-footer" style="display: flex; flex-direction: column; align-items: center; gap: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.5rem;">
-                <div id="courseDetailPriceWrap" class="course-price-wrap" style="border: none; padding: 0; margin: 0; align-items: center;">
+                <div id="courseDetailPriceWrap" class="course-price-wrap" style="border: none; padding: 0; margin: 0; align-items: center; width: 100%;">
                     <!-- Dynamically populated -->
                 </div>
                 <a id="courseDetailLink" href="https://forms.gle/hEpkRMcK6F112ZF1A" target="_blank" rel="noopener noreferrer" class="batches-modal-btn ripple-btn" style="width: 100%; justify-content: center;">
