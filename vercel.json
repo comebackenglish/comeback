@@ -1,0 +1,15 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/spoken-english", "destination": "/spoken-english.html" },
+    { "source": "/complete-ielts", "destination": "/complete-ielts.html" },
+    { "source": "/ielts-intensive", "destination": "/ielts-intensive.html" },
+    { "source": "/reading-for-ielts", "destination": "/reading-for-ielts.html" },
+    { "source": "/writing-for-ielts", "destination": "/writing-for-ielts.html" },
+    { "source": "/ielts-speaking", "destination": "/ielts-speaking.html" },
+    { "source": "/ielts-reading", "destination": "/reading-for-ielts.html" },
+    { "source": "/ielts-writing", "destination": "/writing-for-ielts.html" },
+    { "source": "/speaking", "destination": "/ielts-speaking.html" }
+  ]
+}
