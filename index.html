@@ -1188,7 +1188,7 @@
             font-weight: 700;
             letter-spacing: -0.04em;
             text-align: center;
-            margin-bottom: 1.25rem;
+            margin-bottom: 2.25rem;
             text-transform: uppercase;
             position: relative;
         }
@@ -3845,40 +3845,6 @@
 
         <section class="premium-white-section">
             <h2 class="premium-title reveal delay-1">Comeback Courses</h2>
-            <div class="savings-offer-card reveal delay-1" id="comebackSavingsText">
-                <div class="offer-ripple-beacon">
-                    <span class="offer-beacon-dot-wrap">
-                        <span class="beacon-ripple-ring"></span>
-                        <span class="beacon-ripple-ring delay"></span>
-                        <span class="offer-beacon-dot"></span>
-                    </span>
-                    <span class="offer-beacon-title">SPECIAL DISCOUNT OFFER</span>
-                </div>
-                <div class="offer-line-1">বেশি শিখলে, আরও বেশি সেভিংস</div>
-                <div class="offer-tiers-list">
-                    <div class="offer-tier-row line-2">
-                        <span class="offer-tier-left">
-                            <span class="offer-tier-bullet"></span>
-                            <span>১টি কোর্সে ভর্তিতে</span>
-                        </span>
-                        <span class="offer-discount-badge badge-tier-1">১১% OFF</span>
-                    </div>
-                    <div class="offer-tier-row line-3">
-                        <span class="offer-tier-left">
-                            <span class="offer-tier-bullet"></span>
-                            <span>২টি কোর্সে ভর্তিতে</span>
-                        </span>
-                        <span class="offer-discount-badge badge-tier-2">২২% OFF</span>
-                    </div>
-                    <div class="offer-tier-row line-4 best-value">
-                        <span class="offer-tier-left">
-                            <span class="offer-tier-bullet"></span>
-                            <span>৩টি কোর্সে ভর্তিতে</span>
-                        </span>
-                        <span class="offer-discount-badge badge-tier-3">৩৩% OFF</span>
-                    </div>
-                </div>
-            </div>
 
             <div class="courses-bento-grid reveal delay-1">
                 <div class="bento-course-card pink spoken-card" data-course="spoken">
@@ -4049,35 +4015,6 @@
             }, revealOptions);
 
             revealElements.forEach(el => revealObserver.observe(el));
-
-            // Safety trigger: ensure word reveal triggers if element is already in view or observer delayed
-            const checkWordRevealInView = () => {
-                const wordReveal = document.getElementById('comebackSavingsText');
-                if (wordReveal && !wordReveal.classList.contains('active')) {
-                    const rect = wordReveal.getBoundingClientRect();
-                    if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
-                        wordReveal.classList.add('active');
-                    }
-                }
-            };
-            window.addEventListener('scroll', checkWordRevealInView, { passive: true });
-            setTimeout(checkWordRevealInView, 800);
-
-            // Interactive Ripple on Offer Card
-            const offerCard = document.getElementById('comebackSavingsText');
-            if (offerCard) {
-                offerCard.addEventListener('pointerdown', (e) => {
-                    const ripple = document.createElement('span');
-                    ripple.className = 'touch-ripple-effect';
-                    const rect = offerCard.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height) * 1.5;
-                    ripple.style.width = ripple.style.height = `${size}px`;
-                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
-                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
-                    offerCard.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 750);
-                });
-            }
 
             // 2. 3D Tilt Effect on Desktop
             if (!isMobile) {
@@ -4393,29 +4330,11 @@
 
             // 7. Course Details Data & Modal Logic
             function getCoursePricingHtml(mainPrice) {
-                const p11 = Math.round(mainPrice * 0.89);
-                const p22 = Math.round(mainPrice * 0.78);
-                const p33 = Math.round(mainPrice * 0.67);
-
                 return `
                     <div class="course-modal-pricing-wrap">
                         <div class="course-modal-main-price">
-                            <span class="main-price-title">Main Fee:</span>
+                            <span class="main-price-title">Course Fee:</span>
                             <span class="main-price-figure">৳${mainPrice}</span>
-                        </div>
-                        <div class="course-modal-discount-row">
-                            <div class="course-discount-card tier-11">
-                                <span class="course-discount-badge">১১% OFF</span>
-                                <span class="course-discount-val">৳${p11}</span>
-                            </div>
-                            <div class="course-discount-card tier-22">
-                                <span class="course-discount-badge">২২% OFF</span>
-                                <span class="course-discount-val">৳${p22}</span>
-                            </div>
-                            <div class="course-discount-card tier-33 best">
-                                <span class="course-discount-badge best">৩৩% OFF</span>
-                                <span class="course-discount-val">৳${p33}</span>
-                            </div>
                         </div>
                     </div>
                 `;
@@ -4488,8 +4407,8 @@
                         "1.5 month",
                         "Practice session"
                     ],
-                    price: 2999,
-                    pricingHtml: getCoursePricingHtml(2999)
+                    price: 1999,
+                    pricingHtml: getCoursePricingHtml(1999)
                 },
                 writing: {
                     title: "WRITING for IELTS",
@@ -4501,8 +4420,8 @@
                         "1.5 month",
                         "Practice session"
                     ],
-                    price: 2999,
-                    pricingHtml: getCoursePricingHtml(2999)
+                    price: 2499,
+                    pricingHtml: getCoursePricingHtml(2499)
                 },
                 evaluation: {
                     title: "IELTS Speaking",
