@@ -383,6 +383,8 @@
             border: 1px solid rgba(255, 255, 255, 0.16);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
             transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+            text-decoration: none;
+            color: inherit;
         }
 
         .bento-course-card::before {
@@ -3847,7 +3849,7 @@
             <h2 class="premium-title reveal delay-1">Comeback Courses</h2>
 
             <div class="courses-bento-grid reveal delay-1">
-                <div class="bento-course-card pink spoken-card" data-course="spoken">
+                <a href="/spoken-english" class="bento-course-card pink spoken-card" data-course="spoken">
                     <div class="course-card-icon-wrap">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1769920083/spoken.svg" alt="SPOKEN English" class="course-card-icon">
                     </div>
@@ -3860,8 +3862,8 @@
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </div>
-                </div>
-                <div class="bento-course-card red complete-card" data-course="complete">
+                </a>
+                <a href="/complete-ielts" class="bento-course-card red complete-card" data-course="complete">
                     <div class="course-card-icon-wrap">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1769920083/ielts.svg" alt="COMPLETE IELTS" class="course-card-icon">
                     </div>
@@ -3874,8 +3876,8 @@
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </div>
-                </div>
-                <div class="bento-course-card purple intensive-card" data-course="intensive">
+                </a>
+                <a href="/ielts-intensive" class="bento-course-card purple intensive-card" data-course="intensive">
                     <div class="course-card-icon-wrap">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1787543172/intensive.svg" alt="IELTS Intensive" class="course-card-icon">
                     </div>
@@ -3888,8 +3890,8 @@
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </div>
-                </div>
-                <div class="bento-course-card blue reading-card" data-course="reading">
+                </a>
+                <a href="/reading-for-ielts" class="bento-course-card blue reading-card" data-course="reading">
                     <div class="course-card-icon-wrap">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1769920083/reading.svg" alt="READING for IELTS" class="course-card-icon">
                     </div>
@@ -3902,8 +3904,8 @@
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </div>
-                </div>
-                <div class="bento-course-card black writing-card" data-course="writing">
+                </a>
+                <a href="/writing-for-ielts" class="bento-course-card black writing-card" data-course="writing">
                     <div class="course-card-icon-wrap">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1787543172/writing.svg" alt="WRITING for IELTS" class="course-card-icon">
                     </div>
@@ -3916,8 +3918,8 @@
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </div>
-                </div>
-                <div class="bento-course-card orange evaluation-card" data-course="speaking">
+                </a>
+                <a href="/ielts-speaking" class="bento-course-card orange evaluation-card" data-course="speaking">
                     <div class="course-card-icon-wrap">
                         <img src="https://res.cloudinary.com/dmskxohrr/image/upload/v1787543173/speaking.svg" alt="IELTS Speaking" class="course-card-icon">
                     </div>
@@ -3930,7 +3932,7 @@
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
         <!-- Bottom Sections -->
@@ -4495,12 +4497,6 @@
                     document.body.style.overflow = 'hidden';
                 };
 
-                bentoCards.forEach(card => {
-                    card.addEventListener('click', () => {
-                        const courseKey = card.getAttribute('data-course');
-                        openCourseDetail(courseKey);
-                    });
-                });
 
                 const closeDetailModal = () => {
                     courseDetailModal.classList.remove('active');
@@ -4850,3 +4846,13 @@
 </body>
 
 </html>
+
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/ielts-reading", "destination": "/reading-for-ielts", "permanent": true },
+    { "source": "/ielts-writing", "destination": "/writing-for-ielts", "permanent": true },
+    { "source": "/speaking", "destination": "/ielts-speaking", "permanent": true }
+  ]
+}
